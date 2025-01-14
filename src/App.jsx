@@ -26,7 +26,7 @@ function App() {
       <ThemeProvider theme={isDarkMode ? theme.dark : theme.light}>
         <GlobalStyles />
         <ScrollProgress />
-        <Router>
+        <Router basename="/portfolio">
           <Navbar toggleTheme={toggleTheme} isDarkMode={isDarkMode} />
           <Suspense fallback={<LoadingSpinner />}>
             <Routes>
