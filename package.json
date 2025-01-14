@@ -3,7 +3,7 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
-  "homepage": "https://abhishekmaurya-tech.github.io/portfolio",
+  "homepage": "https://abhishek-maurya576.github.io/portfolio",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
