@@ -202,28 +202,19 @@ const certifications = [
     id: 1,
     title: "API Fundamentals Student Expert",
     issuer: "Postman",
-    date: "Issued Aug 2023",
+    date: "Issued Oct 2024",
     credentialId: "c3d7f2a0-3b1a-4b1a-9b1a-3b1a4b1a9b1a",
-    verifyLink: "https://badgr.com/public/assertions/c3d7f2a0-3b1a-4b1a-9b1a-3b1a4b1a9b1a",
+    verifyLink: "https://media.licdn.com/dms/image/v2/D562DAQFBg5jmg9VQnQ/profile-treasury-image-shrink_800_800/profile-treasury-image-shrink_800_800/0/1729946220842?e=1737471600&v=beta&t=8QI318DNyeZtJ9DViW1tjZ7LxUTc8qFmmXzAjrnMx5o",
     skills: ["API Testing", "API Documentation", "Postman"]
   },
   {
     id: 2,
     title: "C Programming",
-    issuer: "Coding Ninjas",
-    date: "Issued Jul 2023",
+    issuer: "KG Coding Academy",
+    date: "Issued sep 2024",
     credentialId: "CN-9118",
-    verifyLink: "https://www.codingninjas.com/verify/CN-9118",
+    verifyLink: "https://media.licdn.com/dms/image/v2/D562DAQHKOLOMm_gx_Q/profile-treasury-image-shrink_800_800/profile-treasury-image-shrink_800_800/0/1726561783395?e=1737471600&v=beta&t=SLz3Q1YWMEFMA0FxIBlH0VpS0HayIkHTODBEWAn2bME",
     skills: ["C Programming", "Data Structures", "Problem Solving"]
-  },
-  {
-    id: 3,
-    title: "JavaScript Algorithms and Data Structures",
-    issuer: "freeCodeCamp",
-    date: "Issued Jun 2023",
-    credentialId: "fcc-js-algo-ds",
-    verifyLink: "https://www.freecodecamp.org/certification/abhishekmaurya/javascript-algorithms-and-data-structures",
-    skills: ["JavaScript", "Algorithms", "Data Structures"]
   }
 ];
 

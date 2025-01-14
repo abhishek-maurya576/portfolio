@@ -1,13 +1,13 @@
 import { ThemeProvider } from 'styled-components';
 import { useState, Suspense } from 'react';
+import { Routes, Route } from 'react-router-dom';
 import Navbar from './components/Navbar';
-import Home from './pages/Home';
 import LoadingSpinner from './components/LoadingSpinner';
 import theme from './styles/theme';
 import GlobalStyles from './styles/GlobalStyles';
 import ErrorBoundary from './components/ErrorBoundary';
 import ScrollProgress from './components/ScrollProgress';
-import ThemeToggle from './components/ThemeToggle';
+import { routes } from './routes';
 
 function App() {
   const [isDarkMode, setIsDarkMode] = useState(false);
@@ -23,7 +23,15 @@ function App() {
         <ScrollProgress />
         <Navbar toggleTheme={toggleTheme} isDarkMode={isDarkMode} />
         <Suspense fallback={<LoadingSpinner />}>
-          <Home />
+          <Routes>
+            {routes.map((route) => (
+              <Route
+                key={route.path}
+                path={route.path}
+                element={route.element}
+              />
+            ))}
+          </Routes>
         </Suspense>
       </ThemeProvider>
     </ErrorBoundary>

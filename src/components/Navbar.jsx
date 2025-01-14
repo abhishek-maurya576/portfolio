@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import ThemeToggle from './ThemeToggle';
 
@@ -26,6 +26,7 @@ const Logo = styled(Link)`
   background: linear-gradient(45deg, ${({ theme }) => theme.primary}, ${({ theme }) => theme.accent});
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
+  text-decoration: none;
 `;
 
 const NavLinks = styled.div`
@@ -33,7 +34,35 @@ const NavLinks = styled.div`
   gap: 2rem;
 `;
 
+const NavLink = styled(Link)`
+  color: ${({ theme, $isActive }) => $isActive ? theme.primary : theme.text};
+  text-decoration: none;
+  font-weight: ${({ $isActive }) => $isActive ? '600' : '400'};
+  position: relative;
+  transition: color 0.3s ease;
+
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: -4px;
+    left: 0;
+    width: ${({ $isActive }) => $isActive ? '100%' : '0'};
+    height: 2px;
+    background: ${({ theme }) => theme.primary};
+    transition: width 0.3s ease;
+  }
+
+  &:hover {
+    color: ${({ theme }) => theme.primary};
+    &::after {
+      width: 100%;
+    }
+  }
+`;
+
 const Navbar = ({ toggleTheme, isDarkMode }) => {
+  const location = useLocation();
+
   return (
     <Nav
       initial={{ y: -100 }}
@@ -42,10 +71,10 @@ const Navbar = ({ toggleTheme, isDarkMode }) => {
     >
       <Logo to="/">My Portfolio</Logo>
       <NavLinks>
-        <Link to="/about">About</Link>
-        <Link to="/projects">Projects</Link>
-        <Link to="/contact">Contact</Link>
-        <Link to="/blog">Blog</Link>
+        <NavLink to="/about" $isActive={location.pathname === '/about'}>About</NavLink>
+        <NavLink to="/projects" $isActive={location.pathname === '/projects'}>Projects</NavLink>
+        <NavLink to="/contact" $isActive={location.pathname === '/contact'}>Contact</NavLink>
+        <NavLink to="/blog" $isActive={location.pathname === '/blog'}>Blog</NavLink>
       </NavLinks>
       <ThemeToggle isDarkMode={isDarkMode} toggleTheme={toggleTheme} />
     </Nav>

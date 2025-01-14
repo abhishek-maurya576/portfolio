@@ -2,13 +2,17 @@ import styled from 'styled-components';
 import { motion } from 'framer-motion';
 import { useState } from 'react';
 import ResumeModal from './ResumeModal';
+// Import a default profile picture (you can replace this with your actual profile picture)
+import defaultProfilePic from '../assets/images/profile/profile.jpg';
 
 const ProfileContainer = styled.div`
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
-  margin-bottom: 2rem;
+  margin: 2rem auto;
   width: 100%;
+  max-width: 200px;
 `;
 
 const ProfileImage = styled(motion.div)`
@@ -17,9 +21,9 @@ const ProfileImage = styled(motion.div)`
   border-radius: 50%;
   overflow: hidden;
   border: 3px solid ${({ theme }) => theme.primary};
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
   position: relative;
   cursor: pointer;
-  margin: 0 auto;
   
   &::before {
     content: '';
@@ -31,6 +35,7 @@ const ProfileImage = styled(motion.div)`
     background: ${({ theme }) => theme.primary};
     opacity: 0;
     transition: opacity 0.3s ease;
+    z-index: 1;
   }
   
   img {
@@ -51,8 +56,16 @@ const ProfileImage = styled(motion.div)`
   }
 `;
 
+const ProfileName = styled(motion.h3)`
+  margin-top: 1rem;
+  font-size: 1.2rem;
+  color: ${({ theme }) => theme.text};
+  text-align: center;
+`;
+
 const ProfileSection = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [imageError, setImageError] = useState(false);
 
   return (
     <ProfileContainer>
@@ -64,10 +77,11 @@ const ProfileSection = () => {
         whileHover={{ scale: 1.05 }}
       >
         <img 
-          src="https://via.placeholder.com/180x180" 
+          src={imageError ? "https://via.placeholder.com/180x180?text=AM" : defaultProfilePic}
           alt="Abhishek Maurya" 
           onError={(e) => {
-            e.target.src = "https://via.placeholder.com/180x180";
+            setImageError(true);
+            e.target.src = "https://via.placeholder.com/180x180?text=AM";
           }}
         />
       </ProfileImage>
