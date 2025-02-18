@@ -230,24 +230,24 @@ const projects = [
     description: "A classic Snake game built with HTML5 Canvas and JavaScript, featuring smooth controls and score tracking.",
     image: snakeGameImg,
     techStack: ["HTML5", "CSS3", "JavaScript", "Canvas API"],
-    liveDemo: "https://abhishek-maurya576.github.io/Snake-Game/",
-    sourceCode: "https://github.com/abhishek-maurya576/Snake-Game"
+    liveDemo: "https://abhishek-maurya576.github.io/snake_game/",
+    sourceCode: "https://github.com/abhishek-maurya576/snake_game"
   },
   {
     title: "Stopwatch App",
     description: "A precise stopwatch application with lap timing functionality and a clean, intuitive interface.",
     image: stopwatchImg,
     techStack: ["HTML5", "CSS3", "JavaScript"],
-    liveDemo: "https://abhishek-maurya576.github.io/Stopwatch/",
-    sourceCode: "https://github.com/abhishek-maurya576/Stopwatch"
+    liveDemo: "https://github.com/abhishek-maurya576/Stop-Watch",
+    sourceCode: "https://stop-watch-three-dun.vercel.app/"
   },
   {
     title: "Login/Signup Page",
     description: "A modern authentication interface with form validation and smooth transitions between login and signup modes.",
     image: loginSignupImg,
     techStack: ["HTML5", "CSS3", "JavaScript"],
-    liveDemo: "https://abhishek-maurya576.github.io/Login-Signup-Page/",
-    sourceCode: "https://github.com/abhishek-maurya576/Login-Signup-Page"
+    liveDemo: "https://abhishek-maurya576.github.io/login-signup-page/",
+    sourceCode: "https://github.com/abhishek-maurya576/login-signup-page"
   },
   {
     title: "Muzic Player",
@@ -262,7 +262,7 @@ const projects = [
     description: "An interactive Tic Tac Toe game for Android with AI opponent, created using Java and Android Studio.",
     image: ticTacToeImg,
     techStack: ["Java", "Android Studio", "AI"],
-    liveDemo: "https://github.com/abhishek-maurya576/Tic-Tac-Toe-AI/releases/tag/v1.0.0",
+    liveDemo: "https://github.com/abhishek-maurya576/Tic-Tac-Toe-AI/releases/tag/v4.0.0",
     sourceCode: "https://github.com/abhishek-maurya576/Tic-Tac-Toe-AI"
   },
   {
