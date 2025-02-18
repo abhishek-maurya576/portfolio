@@ -16,6 +16,13 @@ export default defineConfig({
           styling: ['styled-components', 'framer-motion'],
         },
       },
+      onwarn(warning, warn) {
+        // Ignore eval warnings from lottie.js
+        if (warning.code === 'EVAL' && warning.id?.includes('lottie.js')) {
+          return;
+        }
+        warn(warning);
+      }
     },
   },
 })

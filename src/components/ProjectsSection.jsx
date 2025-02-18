@@ -1,21 +1,32 @@
 import styled from 'styled-components';
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
-
 // Import project images
 import muzicPlayerImg from '../assets/images/projects/muzic-player.png';
 import ticTacToeImg from '../assets/images/projects/tic-tac-toe.png';
 import linkzyChatImg from '../assets/images/projects/linkzy-chat.png';
 import aiSummarizerImg from '../assets/images/projects/ai-summarizer.png';
+import snakeGameImg from '../assets/images/projects/snake-game.png';
+import stopwatchImg from '../assets/images/projects/stopwatch.png';
+import loginSignupImg from '../assets/images/projects/login-page.png';
 
 const SectionContainer = styled.section`
-  padding: 6rem 2rem;
+  padding: 6rem 1rem;
   background: ${({ theme }) => theme.background};
+  
+  @media (max-width: 768px) {
+    padding: 4rem 1rem;
+  }
 `;
 
 const ContentWrapper = styled.div`
   max-width: 1200px;
   margin: 0 auto;
+  padding: 0 1rem;
+  
+  @media (max-width: 768px) {
+    padding: 0;
+  }
 `;
 
 const SectionTitle = styled(motion.h2)`
@@ -25,13 +36,24 @@ const SectionTitle = styled(motion.h2)`
   background: linear-gradient(45deg, ${({ theme }) => theme.primary}, ${({ theme }) => theme.accent});
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
+  
+  @media (max-width: 768px) {
+    font-size: 2rem;
+    margin-bottom: 2rem;
+  }
 `;
 
 const Grid = styled.div`
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
   gap: 2rem;
   padding: 2rem 0;
+  
+  @media (max-width: 768px) {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+    padding: 1rem 0;
+  }
 `;
 
 const Card = styled(motion.div)`
@@ -43,6 +65,115 @@ const Card = styled(motion.div)`
 
   &:hover {
     transform: translateY(-10px);
+  }
+  
+  @media (max-width: 768px) {
+    &:hover {
+      transform: translateY(-5px);
+    }
+  }
+`;
+
+const ProjectImage = styled.div`
+  width: 100%;
+  height: 200px;
+  overflow: hidden;
+  position: relative;
+  background: #000;
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+  }
+
+  &:hover img {
+    transform: scale(1.05);
+  }
+  
+  @media (max-width: 768px) {
+    height: 180px;
+  }
+`;
+
+const ProjectContent = styled.div`
+  padding: 1.5rem;
+  
+  @media (max-width: 768px) {
+    padding: 1rem;
+  }
+`;
+
+const ProjectTitle = styled.h3`
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+  color: ${({ theme }) => theme.primary};
+  
+  @media (max-width: 768px) {
+    font-size: 1.3rem;
+    margin-bottom: 0.8rem;
+  }
+`;
+
+const ProjectDescription = styled.p`
+  color: ${({ theme }) => theme.text};
+  margin-bottom: 1.5rem;
+  line-height: 1.6;
+  
+  @media (max-width: 768px) {
+    font-size: 0.9rem;
+    margin-bottom: 1rem;
+  }
+`;
+
+const TechStack = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 1.5rem;
+`;
+
+const TechTag = styled.span`
+  background: ${({ theme }) => `rgba(${theme.backgroundRgba}, 0.5)`};
+  color: ${({ theme }) => theme.accent};
+  padding: 0.3rem 0.8rem;
+  border-radius: 15px;
+  font-size: 0.9rem;
+  border: 1px solid ${({ theme }) => theme.accent};
+  
+  @media (max-width: 768px) {
+    font-size: 0.8rem;
+    padding: 0.2rem 0.6rem;
+  }
+`;
+
+const ProjectLinks = styled.div`
+  display: flex;
+  gap: 1rem;
+  
+  @media (max-width: 768px) {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+`;
+
+const ProjectLink = styled.a`
+  color: ${({ theme }) => theme.text};
+  text-decoration: none;
+  padding: 0.5rem 1rem;
+  border: 1px solid ${({ theme }) => theme.primary};
+  border-radius: 5px;
+  transition: all 0.3s ease;
+  text-align: center;
+
+  &:hover {
+    background: ${({ theme }) => theme.primary};
+    color: white;
+  }
+  
+  @media (max-width: 768px) {
+    padding: 0.4rem 0.8rem;
   }
 `;
 
@@ -93,77 +224,31 @@ const ViewButton = styled.a`
   }
 `;
 
-const ProjectImage = styled.div`
-  width: 100%;
-  height: 200px;
-  overflow: hidden;
-  position: relative;
-  background: #000;
-
-  img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    transition: transform 0.3s ease;
-  }
-
-  &:hover img {
-    transform: scale(1.05);
-  }
-`;
-
-const ProjectContent = styled.div`
-  padding: 1.5rem;
-`;
-
-const ProjectTitle = styled.h3`
-  font-size: 1.5rem;
-  margin-bottom: 1rem;
-  color: ${({ theme }) => theme.primary};
-`;
-
-const ProjectDescription = styled.p`
-  color: ${({ theme }) => theme.text};
-  margin-bottom: 1.5rem;
-  line-height: 1.6;
-`;
-
-const TechStack = styled.div`
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.5rem;
-  margin-bottom: 1.5rem;
-`;
-
-const TechTag = styled.span`
-  background: ${({ theme }) => `rgba(${theme.backgroundRgba}, 0.5)`};
-  color: ${({ theme }) => theme.accent};
-  padding: 0.3rem 0.8rem;
-  border-radius: 15px;
-  font-size: 0.9rem;
-  border: 1px solid ${({ theme }) => theme.accent};
-`;
-
-const ProjectLinks = styled.div`
-  display: flex;
-  gap: 1rem;
-`;
-
-const ProjectLink = styled.a`
-  color: ${({ theme }) => theme.text};
-  text-decoration: none;
-  padding: 0.5rem 1rem;
-  border: 1px solid ${({ theme }) => theme.primary};
-  border-radius: 5px;
-  transition: all 0.3s ease;
-
-  &:hover {
-    background: ${({ theme }) => theme.primary};
-    color: white;
-  }
-`;
-
 const projects = [
+  {
+    title: "Snake Game",
+    description: "A classic Snake game built with HTML5 Canvas and JavaScript, featuring smooth controls and score tracking.",
+    image: snakeGameImg,
+    techStack: ["HTML5", "CSS3", "JavaScript", "Canvas API"],
+    liveDemo: "https://abhishek-maurya576.github.io/Snake-Game/",
+    sourceCode: "https://github.com/abhishek-maurya576/Snake-Game"
+  },
+  {
+    title: "Stopwatch App",
+    description: "A precise stopwatch application with lap timing functionality and a clean, intuitive interface.",
+    image: stopwatchImg,
+    techStack: ["HTML5", "CSS3", "JavaScript"],
+    liveDemo: "https://abhishek-maurya576.github.io/Stopwatch/",
+    sourceCode: "https://github.com/abhishek-maurya576/Stopwatch"
+  },
+  {
+    title: "Login/Signup Page",
+    description: "A modern authentication interface with form validation and smooth transitions between login and signup modes.",
+    image: loginSignupImg,
+    techStack: ["HTML5", "CSS3", "JavaScript"],
+    liveDemo: "https://abhishek-maurya576.github.io/Login-Signup-Page/",
+    sourceCode: "https://github.com/abhishek-maurya576/Login-Signup-Page"
+  },
   {
     title: "Muzic Player",
     description: "A feature-rich music player application built with Kotlin for Android devices, featuring local playback, notification controls, and background playback support.",
@@ -185,7 +270,7 @@ const projects = [
     description: "A real-time chatting application with Firebase backend, featuring user authentication and live messaging capabilities.",
     image: linkzyChatImg,
     techStack: ["Java", "Kotlin", "Firebase", "Android Studio"],
-    sourceCode: "https://github.com/abhishek-maurya576/Linkzy-Chat-App"
+    sourceCode: "https://raw.githubusercontent.com/abhishek-maurya576/portfolio/refs/heads/main/images/Under%20Development.png"
   },
   {
     title: "AI Text Summarizer",
@@ -200,21 +285,43 @@ const projects = [
 const certifications = [
   {
     id: 1,
+    title: "Problem Solving (Basic) with Python",
+    issuer: "HackerRank",
+    date: "Issued Feb 2025",
+    credentialId: "f64a7475c9f1",
+    verifyLink: "https://www.hackerrank.com/certificates/iframe/f64a7475c9f1",
+    image: "https://raw.githubusercontent.com/abhishek-maurya576/portfolio/refs/heads/main/images/problem-solving-python.png",
+    skills: ["Python", "Problem Solving", "Programming"]
+  },
+  {
+    id: 2,
+    title: "Introduction to AI",
+    issuer: "Infosys Springboard",
+    date: "Issued Aug 2024",
+    credentialId: "Scan the QR",
+    verifyLink: "https://raw.githubusercontent.com/abhishek-maurya576/portfolio/refs/heads/main/images/Introduction-to-AI.png",
+    image: "https://raw.githubusercontent.com/abhishek-maurya576/portfolio/refs/heads/main/images/Introduction-to-AI.png",
+    skills: ["Problem Solving & Logical Thinking", "Analytical Skills", "Technical Assessment"]
+  },
+  {
+    id: 3,
     title: "API Fundamentals Student Expert",
     issuer: "Postman",
     date: "Issued Oct 2024",
     credentialId: "c3d7f2a0-3b1a-4b1a-9b1a-3b1a4b1a9b1a",
     verifyLink: "https://media.licdn.com/dms/image/v2/D562DAQFBg5jmg9VQnQ/profile-treasury-image-shrink_800_800/profile-treasury-image-shrink_800_800/0/1729946220842?e=1737471600&v=beta&t=8QI318DNyeZtJ9DViW1tjZ7LxUTc8qFmmXzAjrnMx5o",
+    image: "https://raw.githubusercontent.com/abhishek-maurya576/portfolio/refs/heads/main/images/postman.png",
     skills: ["API Testing", "API Documentation", "Postman"]
   },
   {
-    id: 2,
-    title: "C Programming",
-    issuer: "KG Coding Academy",
-    date: "Issued sep 2024",
-    credentialId: "CN-9118",
-    verifyLink: "https://media.licdn.com/dms/image/v2/D562DAQHKOLOMm_gx_Q/profile-treasury-image-shrink_800_800/profile-treasury-image-shrink_800_800/0/1726561783395?e=1737471600&v=beta&t=SLz3Q1YWMEFMA0FxIBlH0VpS0HayIkHTODBEWAn2bME",
-    skills: ["C Programming", "Data Structures", "Problem Solving"]
+    id: 4,
+    title: "Introduction to Robotic Process Automation",
+    issuer: "Infosys Springboard",
+    date: "Issued Feb 2025",
+    credentialId: "Scan QR",
+    verifyLink: "https://raw.githubusercontent.com/abhishek-maurya576/portfolio/refs/heads/main/images/Introduction-to-RPA.png",
+    image: "https://raw.githubusercontent.com/abhishek-maurya576/portfolio/refs/heads/main/images/Introduction-to-RPA.png",
+    skills: ["Workflow Automation:", "RPA Basics", "Scripting & Logic Building:"]
   }
 ];
 
@@ -280,13 +387,13 @@ const ProjectsSection = () => {
         </SectionTitle>
         <Grid>
           {certifications.map((cert) => (
-            <Card
-              key={cert.id}
-              initial={{ opacity: 0, y: 20 }}
-              animate={inView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.5, delay: cert.id * 0.1 }}
-            >
+            <Card key={cert.id} initial={{ opacity: 0, y: 20 }} animate={inView ? { opacity: 1, y: 0 } : {}} transition={{ duration: 0.5, delay: cert.id * 0.1 }}>
               <CardContent>
+                {cert.image && (
+                  <ProjectImage>
+                    <img src={cert.image} alt={cert.title} />
+                  </ProjectImage>
+                )}
                 <CardTitle>{cert.title}</CardTitle>
                 <CardInfo>
                   {cert.issuer} • {cert.date}

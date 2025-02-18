@@ -94,33 +94,41 @@ const CertificationCard = styled(motion.div)`
 `;
 
 const skills = {
-  "Languages & Frameworks": [
-    "Java", "Kotlin", "JavaScript", "Node.js",
-    "React", "Express", "HTML5", "CSS3"
+  "Programming Languages": [
+    "Java", "Kotlin", "Python", "JavaScript",
+     "Dart", "Flutter", "C"
   ],
+  "Web Development": [
+    "HTML", "CSS",
+    "Tailwind CSS", "Material UI",
+    "Responsive Design"
+  ],
+  "Data Science & AI:": [
+    "Machine Learning", "Deep Learning", "Python"
+    
+  ],
+  "Database Query Languages": [
+    "SQL", "NoSQL"
+  ],
+  "Operating Systems": [
+    "Linux", "Windows"
+  ],
+  "Version Control": [
+    "Git", "GitHub"
+  ],
+  
   "Development Tools": [
     "Android Studio", "IntelliJ IDEA", "VS Code",
-    "Git & GitHub", "Firebase", "Docker"
+    "Git & GitHub", "Firebase", "Docker", "Kaggle", "Project IDX", "Postman", "Figma", "Adobe Photoshop", "Capcut"
   ],
   "Other Skills": [
     "RESTful APIs", "Database Design",
-    "UI/UX Design", "Agile Methodology",
+    "UI/UX Design", "MS Office",
     "Problem Solving", "Team Collaboration"
   ]
 };
 
-const certifications = [
-  {
-    title: "Postman API Fundamentals",
-    issuer: "Postman",
-    date: "2023"
-  },
-  {
-    title: "C Programming Certification",
-    issuer: "Coding Ninjas",
-    date: "2023"
-  }
-];
+
 
 const SkillsSection = () => {
   const { ref, inView } = useInView({
@@ -162,23 +170,7 @@ const SkillsSection = () => {
         ))}
       </SkillsGrid>
 
-      <CertificationsSection>
-        <h3>Certifications</h3>
-        <CertificationGrid>
-          {certifications.map((cert, index) => (
-            <CertificationCard
-              key={cert.title}
-              initial={{ opacity: 0, y: 20 }}
-              animate={inView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.5, delay: index * 0.1 }}
-              whileHover={{ y: -5 }}
-            >
-              <h4>{cert.title}</h4>
-              <p>{cert.issuer} • {cert.date}</p>
-            </CertificationCard>
-          ))}
-        </CertificationGrid>
-      </CertificationsSection>
+      
     </SkillsContainer>
   );
 };

@@ -24,7 +24,7 @@ dist-ssr
 *.sw?
 
 # Common Node.js and build files to ignore
-package-lock.json
+
 yarn.lock
 pnpm-lock.yaml
 build

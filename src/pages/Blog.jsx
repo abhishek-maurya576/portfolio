@@ -3,9 +3,13 @@ import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 
 const BlogContainer = styled(motion.div)`
-  padding: 6rem 2rem;
+  padding: 4rem 1rem;
   max-width: 1200px;
   margin: 0 auto;
+  
+  @media (max-width: 768px) {
+    padding: 3rem 1rem;
+  }
 `;
 
 const PageTitle = styled.h1`
@@ -15,12 +19,22 @@ const PageTitle = styled.h1`
   background: linear-gradient(45deg, ${({ theme }) => theme.primary}, ${({ theme }) => theme.accent});
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
+  
+  @media (max-width: 768px) {
+    font-size: 2rem;
+    margin-bottom: 2rem;
+  }
 `;
 
 const BlogGrid = styled.div`
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   gap: 2rem;
+  
+  @media (max-width: 768px) {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
 `;
 
 const BlogCard = styled(motion.article)`
@@ -30,10 +44,18 @@ const BlogCard = styled(motion.article)`
   overflow: hidden;
   transition: all 0.3s ease;
   backdrop-filter: blur(10px);
-
+  
+  @media (max-width: 768px) {
+    margin: 0 0.5rem;
+  }
+  
   &:hover {
     transform: translateY(-10px);
     box-shadow: 0 10px 30px -10px ${({ theme }) => `rgba(${theme.backgroundRgba}, 0.5)`};
+  
+    @media (max-width: 768px) {
+      transform: translateY(-5px);
+    }
   }
 `;
 
@@ -43,47 +65,50 @@ const BlogImage = styled.div`
   overflow: hidden;
   position: relative;
   background: ${({ theme }) => `rgba(${theme.backgroundRgba}, 0.1)`};
-
+  
+  @media (max-width: 768px) {
+    height: 200px;
+  }
+  
   img {
     width: 100%;
     height: 100%;
     object-fit: cover;
     transition: transform 0.3s ease;
   }
-
+  
   &:hover img {
     transform: scale(1.1);
-  }
-
-  &::after {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: linear-gradient(
-      to bottom,
-      transparent 0%,
-      ${({ theme }) => `rgba(${theme.backgroundRgba}, 0.2)`} 100%
-    );
   }
 `;
 
 const BlogContent = styled.div`
   padding: 1.5rem;
+  
+  @media (max-width: 768px) {
+    padding: 1rem;
+  }
 `;
 
 const BlogTitle = styled.h2`
   font-size: 1.5rem;
   margin-bottom: 1rem;
   color: ${({ theme }) => theme.primary};
+  
+  @media (max-width: 768px) {
+    font-size: 1.3rem;
+  }
 `;
 
 const BlogExcerpt = styled.p`
   color: ${({ theme }) => theme.text};
   margin-bottom: 1.5rem;
   line-height: 1.6;
+  
+  @media (max-width: 768px) {
+    font-size: 0.9rem;
+    margin-bottom: 1rem;
+  }
 `;
 
 const BlogMeta = styled.div`
@@ -92,6 +117,13 @@ const BlogMeta = styled.div`
   align-items: center;
   color: ${({ theme }) => theme.secondary};
   font-size: 0.9rem;
+  
+  @media (max-width: 768px) {
+    font-size: 0.8rem;
+    flex-direction: column;
+    gap: 0.5rem;
+    align-items: flex-start;
+  }
 `;
 
 const ReadMore = styled.a`
@@ -172,4 +204,4 @@ const Blog = () => {
   );
 };
 
-export default Blog; 
+export default Blog;

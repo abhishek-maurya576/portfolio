@@ -42,13 +42,13 @@ const FloatingEmail = () => {
       transition={{ duration: 0.5, delay: 0.8 }}
     >
       <EmailLink
-        href="mailto:abhishekmaurya9118@gmail.com"
+        href="mailto:maurya972137@gmail.com"
         whileHover={{ y: -3 }}
       >
-        abhishekmaurya9118@gmail.com
+        maurya972137@gmail.com
       </EmailLink>
     </EmailContainer>
   );
 };
 
-export default FloatingEmail; 
+export default FloatingEmail;

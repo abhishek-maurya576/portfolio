@@ -13,6 +13,7 @@ import SkillsSection from '../components/SkillsSection';
 import ProjectsSection from '../components/ProjectsSection';
 import Footer from '../components/Footer';
 import CertificationsSection from '../components/CertificationsSection';
+import ResumeButton from '../components/ResumeButton';
 import { useInView } from 'react-intersection-observer';
 
 const PageContainer = styled.div`
@@ -20,16 +21,10 @@ const PageContainer = styled.div`
   position: relative;
   background: ${({ theme }) => theme.background};
   overflow: hidden;
-`;
 
-const StyledCanvas = styled(Canvas)`
-  position: fixed !important;
-  top: 0;
-  left: 0;
-  width: 100% !important;
-  height: 100% !important;
-  z-index: 0;
-  background: ${({ theme }) => theme.background};
+  @media (max-width: 768px) {
+    padding-top: 60px;
+  }
 `;
 
 const HomeContainer = styled.div`
@@ -39,6 +34,10 @@ const HomeContainer = styled.div`
   overflow: hidden;
   z-index: 1;
   padding-top: 64px;
+
+  @media (max-width: 768px) {
+    padding-top: 32px;
+  }
 `;
 
 const Content = styled.div`
@@ -50,6 +49,10 @@ const Content = styled.div`
   margin: 0 auto;
   position: relative;
   z-index: 2;
+
+  @media (max-width: 768px) {
+    padding: 1rem;
+  }
 `;
 
 const HeroSection = styled.div`
@@ -61,6 +64,11 @@ const HeroSection = styled.div`
   border-radius: 12px;
   background: ${({ theme }) => `rgba(${theme.backgroundRgba}, 0.8)`};
   backdrop-filter: blur(10px);
+
+  @media (max-width: 768px) {
+    padding: 1.5rem;
+    margin: 0 1rem;
+  }
 `;
 
 const Title = styled(motion.h1)`
@@ -70,6 +78,11 @@ const Title = styled(motion.h1)`
   background: linear-gradient(45deg, ${({ theme }) => theme.primary}, ${({ theme }) => theme.accent});
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
+
+  @media (max-width: 768px) {
+    font-size: 2.5rem;
+    margin: 0.5rem 0;
+  }
 `;
 
 const Subtitle = styled(motion.h2)`
@@ -77,6 +90,10 @@ const Subtitle = styled(motion.h2)`
   text-align: center;
   color: ${({ theme }) => theme.text};
   margin: 0.5rem 0;
+
+  @media (max-width: 768px) {
+    font-size: 1.2rem;
+  }
 `;
 
 const TagLine = styled(motion.p)`
@@ -85,6 +102,11 @@ const TagLine = styled(motion.p)`
   color: ${({ theme }) => theme.text};
   margin: 1rem 0;
   line-height: 1.6;
+
+  @media (max-width: 768px) {
+    font-size: 1rem;
+    margin: 0.8rem 0;
+  }
 `;
 
 const SocialLinks = styled(motion.div)`
@@ -92,6 +114,35 @@ const SocialLinks = styled(motion.div)`
   gap: 1.5rem;
   justify-content: center;
   margin: 2rem 0;
+
+  @media (max-width: 768px) {
+    gap: 1rem;
+    margin: 1.5rem 0;
+  }
+`;
+
+const ButtonContainer = styled.div`
+  display: flex;
+  gap: 1.5rem;
+  justify-content: center;
+  margin: 2rem 0;
+
+  @media (max-width: 768px) {
+    flex-direction: column;
+    gap: 1rem;
+    margin: 1.5rem 0;
+  }
+`;
+
+const AboutSection = styled(motion.section)`
+  padding: 4rem 2rem;
+  text-align: center;
+  max-width: 800px;
+  margin: 0 auto;
+
+  @media (max-width: 768px) {
+    padding: 2rem 1rem;
+  }
 `;
 
 const SocialLink = styled(motion.a)`
@@ -103,13 +154,6 @@ const SocialLink = styled(motion.a)`
     color: ${({ theme }) => theme.primary};
     transform: translateY(-3px);
   }
-`;
-
-const ButtonContainer = styled.div`
-  display: flex;
-  gap: 1.5rem;
-  justify-content: center;
-  margin: 2rem 0;
 `;
 
 const Button = styled(motion.a)`
@@ -130,11 +174,13 @@ const Button = styled(motion.a)`
   }
 `;
 
-const AboutSection = styled(motion.section)`
-  padding: 4rem 2rem;
-  text-align: center;
-  max-width: 800px;
-  margin: 0 auto;
+const StyledCanvas = styled(Canvas)`
+  position: fixed !important;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  z-index: 0;
 `;
 
 const Home = () => {
@@ -232,17 +278,7 @@ const Home = () => {
               >
                 View My Work
               </Button>
-              <Button
-                href="/contact"
-                as={motion.a}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, delay: 0.7 }}
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-              >
-                Contact Me
-              </Button>
+              <ResumeButton />
             </ButtonContainer>
           </HeroSection>
 

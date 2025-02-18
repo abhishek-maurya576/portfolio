@@ -9,6 +9,12 @@ const SectionContainer = styled.section`
   border-radius: 20px;
   margin: 4rem auto;
   max-width: 1200px;
+
+  @media (max-width: 768px) {
+    padding: 2rem 1rem;
+    margin: 2rem auto;
+    border-radius: 15px;
+  }
 `;
 
 const SectionTitle = styled.h2`
@@ -18,6 +24,11 @@ const SectionTitle = styled.h2`
   background: linear-gradient(45deg, ${({ theme }) => theme.primary}, ${({ theme }) => theme.accent});
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
+
+  @media (max-width: 768px) {
+    font-size: 2rem;
+    margin-bottom: 2rem;
+  }
 `;
 
 const CertificationsGrid = styled.div`
@@ -28,6 +39,8 @@ const CertificationsGrid = styled.div`
 
   @media (max-width: 768px) {
     grid-template-columns: 1fr;
+    gap: 1.5rem;
+    padding: 0.5rem;
   }
 `;
 
@@ -45,6 +58,10 @@ const CertificationCard = styled(motion.div)`
     transform: translateY(-5px);
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
   }
+
+  @media (max-width: 768px) {
+    padding: 1rem;
+  }
 `;
 
 const CertificationImage = styled.img`
@@ -53,24 +70,41 @@ const CertificationImage = styled.img`
   object-fit: cover;
   border-radius: 10px;
   margin-bottom: 1rem;
+
+  @media (max-width: 768px) {
+    height: 180px;
+  }
 `;
 
 const CertificationTitle = styled.h3`
   font-size: 1.3rem;
   color: ${({ theme }) => theme.primary};
   margin: 1rem 0;
+
+  @media (max-width: 768px) {
+    font-size: 1.1rem;
+    margin: 0.8rem 0;
+  }
 `;
 
 const CertificationIssuer = styled.p`
   font-size: 1rem;
   color: ${({ theme }) => theme.text};
   margin-bottom: 0.5rem;
+
+  @media (max-width: 768px) {
+    font-size: 0.9rem;
+  }
 `;
 
 const CertificationDate = styled.p`
   font-size: 0.9rem;
   color: ${({ theme }) => theme.secondary};
   margin-bottom: 1rem;
+
+  @media (max-width: 768px) {
+    font-size: 0.8rem;
+  }
 `;
 
 const SkillTags = styled.div`
@@ -78,6 +112,11 @@ const SkillTags = styled.div`
   flex-wrap: wrap;
   gap: 0.5rem;
   margin: 1rem 0;
+
+  @media (max-width: 768px) {
+    gap: 0.4rem;
+    margin: 0.8rem 0;
+  }
 `;
 
 const SkillTag = styled.span`
@@ -86,6 +125,11 @@ const SkillTag = styled.span`
   padding: 0.3rem 0.8rem;
   border-radius: 15px;
   font-size: 0.8rem;
+
+  @media (max-width: 768px) {
+    padding: 0.2rem 0.6rem;
+    font-size: 0.7rem;
+  }
 `;
 
 const ViewButton = styled(motion.a)`
@@ -107,8 +151,17 @@ const ViewButton = styled(motion.a)`
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
   }
 
+  @media (max-width: 768px) {
+    padding: 0.6rem 1.2rem;
+    font-size: 0.9rem;
+  }
+
   svg {
     font-size: 0.9rem;
+
+    @media (max-width: 768px) {
+      font-size: 0.8rem;
+    }
   }
 `;
 
@@ -117,7 +170,7 @@ const certifications = [
     title: "Microsoft AI Skills Challenge",
     issuer: "Microsoft",
     date: "Dec 2024",
-    image: "https://media.licdn.com/dms/image/D4D22AQGhRgbEEZvBJw/feedshare-shrink_800/0/1704780357376?e=1707955200&v=beta&t=Uu9Ey2Qx2lGzXWQPVgHgwqSZjZgwWXvJsYoXtHEkgEU",
+    image: "https://raw.githubusercontent.com/abhishek-maurya576/portfolio/refs/heads/main/images/microsoft-ai-skills.png",
     skills: ["Artificial Intelligence", "Machine Learning", "Azure AI"],
     url: "https://www.linkedin.com/in/abhishekmaurya9118/details/certifications/"
   },
@@ -125,7 +178,7 @@ const certifications = [
     title: "GirlScript Summer of Code (GSoC) Extended 2024",
     issuer: "GirlScript Foundation",
     date: "Oct 2024",
-    image: "https://media.licdn.com/dms/image/v2/D562DAQELDd5XDWt1uQ/profile-treasury-image-shrink_800_800/profile-treasury-image-shrink_800_800/0/1729265646223?e=1737442800&v=beta&t=s72l_LzU-2hL3uA9dCaBXNYAt0rpMBpaTqbK7gnSfdk",
+    image: "https://raw.githubusercontent.com/abhishek-maurya576/portfolio/refs/heads/main/images/postman.png",
     skills: ["Open Source", "Git", "GitHub", "JavaScript"],
     url: "https://www.linkedin.com/in/abhishekmaurya9118/details/certifications/"
   },
@@ -134,7 +187,7 @@ const certifications = [
     issuer: "Complete Coding by Prashant Sir",
     date: "Oct 2024",
     credentialId: "WNUBEWMB",
-    image: "https://media.licdn.com/dms/image/v2/D562DAQGmhNGbIZaJPg/profile-treasury-image-shrink_800_800/profile-treasury-image-shrink_800_800/0/1728721178796?e=1737442800&v=beta&t=9yBONWkgDPgU9WGOBdNShfNNiU44q0FvD21oDZjwzec",
+    image: "https://github.com/abhishek-maurya576/portfolio/blob/main/images/java-cert.png?raw=true",
     skills: ["Java", "OOP", "Data Structures"],
     url: "https://www.linkedin.com/in/abhishekmaurya9118/details/certifications/"
   },
@@ -142,7 +195,7 @@ const certifications = [
     title: "Postman API Fundamentals Student Expert",
     issuer: "Canvas Credentials (Badgr)",
     date: "Oct 2024",
-    image: "https://media.licdn.com/dms/image/v2/D562DAQFBg5jmg9VQnQ/profile-treasury-image-shrink_800_800/profile-treasury-image-shrink_800_800/0/1729946220842?e=1737442800&v=beta&t=W1NhxXjbxEncsIxFYKT-bzpUbvJ5bHz7QJ8QzwpxsME",
+    image: "https://raw.githubusercontent.com/abhishek-maurya576/portfolio/refs/heads/main/images/postman-cert.png",
     skills: ["API Testing", "Postman", "API Documentation"],
     url: "https://www.linkedin.com/in/abhishekmaurya9118/details/certifications/"
   },
@@ -150,7 +203,7 @@ const certifications = [
     title: "C Programming Certification Test",
     issuer: "Complete Coding by Prashant Sir",
     date: "Sep 2024",
-    image: "https://media.licdn.com/dms/image/v2/D562DAQHKOLOMm_gx_Q/profile-treasury-image-shrink_800_800/profile-treasury-image-shrink_800_800/0/1726561783395?e=1737442800&v=beta&t=HFuh9K1_W6yEzZGiyouZYp6i4CqOl6Y3F5k2GHAsfO4",
+    image: "https://raw.githubusercontent.com/abhishek-maurya576/portfolio/refs/heads/main/images/c-programming-cert.png",
     skills: ["C Programming", "Problem Solving", "Algorithms"],
     url: "https://www.linkedin.com/in/abhishekmaurya9118/details/certifications/"
   }
