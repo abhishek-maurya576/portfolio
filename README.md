@@ -1,4 +1,3 @@
-
 # Personal Portfolio Website
 
 A modern, responsive portfolio website built with React, Vite, and styled-components. This portfolio showcases my projects, skills, and professional experience with a clean and interactive user interface.
