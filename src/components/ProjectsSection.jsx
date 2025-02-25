@@ -9,6 +9,8 @@ import aiSummarizerImg from '../assets/images/projects/ai-summarizer.png';
 import snakeGameImg from '../assets/images/projects/snake-game.png';
 import stopwatchImg from '../assets/images/projects/stopwatch.png';
 import loginSignupImg from '../assets/images/projects/login-page.png';
+import sgameImg from '../assets/images/projects/snake.webp';
+
 
 const SectionContainer = styled.section`
   padding: 6rem 1rem;
@@ -225,6 +227,16 @@ const ViewButton = styled.a`
 `;
 
 const projects = [
+
+  {
+    title: "S Game",
+    description: "A modern Snake game for Android, built with Jetpack Compose & Kotlin. Features a retro Nokia-style UI, enhanced graphics, and multiple game modes.",
+    image: sgameImg,
+    techStack: ["Kotlin", "Jetpack Compose", "MVVM pattern", "Custom Canvas drawing"],
+    liveDemo: "https://github.com/abhishek-maurya576/Snake-Game/releases/tag/v1.0.0",
+    sourceCode: "https://github.com/abhishek-maurya576/Snake-Game"
+  },
+  
   {
     title: "Snake Game",
     description: "A classic Snake game built with HTML5 Canvas and JavaScript, featuring smooth controls and score tracking.",
