@@ -10,6 +10,7 @@ import snakeGameImg from '../assets/images/projects/snake-game.png';
 import stopwatchImg from '../assets/images/projects/stopwatch.png';
 import loginSignupImg from '../assets/images/projects/login-page.png';
 import sgameImg from '../assets/images/projects/snake.webp';
+import aichatbotImg from '../assets/images/projects/ACB.png'
 
 
 const SectionContainer = styled.section`
@@ -227,6 +228,14 @@ const ViewButton = styled.a`
 `;
 
 const projects = [
+   {
+    "title": "AI Chat Bot Agent",
+    "description": "An advanced AI-powered assistant application for Android, integrating natural language processing, automated interactions, and accessibility features.",
+    "image": aichatbotImg,
+    "techStack": ["Kotlin", "Android Studio", "Google Gemini AI", "Room Database"],
+    "liveDemo": "https://github.com/abhishek-maurya576/AiChatBot/releases",
+    "sourceCode": "https://github.com/abhishek-maurya576/AiChatBot"
+  },
 
   {
     title: "S Game",
