@@ -290,8 +290,9 @@ const projects = [
     title: "Linkzy Chat App",
     description: "A real-time chatting application with Firebase backend, featuring user authentication and live messaging capabilities.",
     image: linkzyChatImg,
-    techStack: ["Java", "Kotlin", "Firebase", "Android Studio"],
-    sourceCode: "https://raw.githubusercontent.com/abhishek-maurya576/portfolio/refs/heads/main/images/Under%20Development.png"
+    techStack: ["Flutter", "Firebase", "Android Studio"],
+    sourceCode: "https://github.com/abhishek-maurya576/linkzy",
+liveDemo: "https://github.com/abhishek-maurya576/linkzy/releases",
   },
   {
     title: "AI Text Summarizer",
