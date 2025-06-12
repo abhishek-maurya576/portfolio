@@ -96,7 +96,7 @@ const Projects = () => {
       id: 1,
       title: "Linkzy Chat App",
       description: "A real-time chatting app built with Firebase backend, featuring user authentication and live messaging capabilities.",
-      tech: ["Java", "Firebase", "Android Studio", ],
+      tech: ["Flutter", "Firebase", "Android Studio", ],
       image: linkzyChatImg
     },
     {
