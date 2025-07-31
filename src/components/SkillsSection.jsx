@@ -3,40 +3,99 @@ import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 
 const SkillsContainer = styled(motion.section)`
-  padding: 6rem 2rem;
-  background: ${({ theme }) => `rgba(${theme.backgroundRgba}, 0.2)`};
-  backdrop-filter: blur(10px);
-  border-radius: 20px;
-  margin: 4rem auto;
+  padding: ${({ theme }) => theme.spacing[24]} ${({ theme }) => theme.spacing[8]};
+  
+  /* Enhanced glass morphism */
+  background: ${({ theme }) => theme.glass.background};
+  backdrop-filter: ${({ theme }) => theme.glass.backdropStrong};
+  -webkit-backdrop-filter: ${({ theme }) => theme.glass.backdropStrong};
+  border: 1px solid ${({ theme }) => theme.glass.border};
+  border-radius: ${({ theme }) => theme.borderRadius['3xl']};
+  box-shadow: ${({ theme }) => theme.shadows.glass.xl};
+  
+  margin: ${({ theme }) => theme.spacing[16]} auto;
   max-width: 1200px;
+  position: relative;
+  
+  /* Gradient border effect */
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    padding: 1px;
+    background: ${({ theme }) => theme.gradients.primary};
+    border-radius: ${({ theme }) => theme.borderRadius['3xl']};
+    mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    mask-composite: xor;
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    opacity: 0.2;
+  }
+  
+  @media (max-width: 768px) {
+    padding: ${({ theme }) => theme.spacing[16]} ${({ theme }) => theme.spacing[4]};
+    margin: ${({ theme }) => theme.spacing[12]} ${({ theme }) => theme.spacing[4]};
+  }
 `;
 
 const SectionTitle = styled.h2`
-  font-size: 2.5rem;
+  font-size: ${({ theme }) => theme.fontSize['4xl']};
+  font-weight: 800;
   text-align: center;
-  margin-bottom: 3rem;
-  background: linear-gradient(45deg, ${({ theme }) => theme.primary}, ${({ theme }) => theme.accent});
+  margin-bottom: ${({ theme }) => theme.spacing[12]};
+  letter-spacing: -0.03em;
+  
+  /* Enhanced gradient text */
+  background: ${({ theme }) => theme.gradients.hero};
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
+  background-clip: text;
+  
+  @media (max-width: 768px) {
+    font-size: ${({ theme }) => theme.fontSize['3xl']};
+    margin-bottom: ${({ theme }) => theme.spacing[8]};
+  }
 `;
 
 const SkillsGrid = styled.div`
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 2rem;
-  margin-bottom: 4rem;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: ${({ theme }) => theme.spacing[8]};
+  margin-bottom: ${({ theme }) => theme.spacing[16]};
+  
+  @media (max-width: 768px) {
+    grid-template-columns: 1fr;
+    gap: ${({ theme }) => theme.spacing[6]};
+  }
 `;
 
 const SkillCategory = styled(motion.div)`
-  padding: 2rem;
-  background: ${({ theme }) => `rgba(${theme.backgroundRgba}, 0.3)`};
-  border-radius: 15px;
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  padding: ${({ theme }) => theme.spacing[8]};
+  
+  /* Enhanced glass morphism */
+  background: ${({ theme }) => theme.glass.backgroundWeak};
+  backdrop-filter: ${({ theme }) => theme.glass.backdrop};
+  -webkit-backdrop-filter: ${({ theme }) => theme.glass.backdrop};
+  border: 1px solid ${({ theme }) => theme.glass.border};
+  border-radius: ${({ theme }) => theme.borderRadius['2xl']};
+  box-shadow: ${({ theme }) => theme.shadows.glass.md};
+  
+  position: relative;
+  transition: all ${({ theme }) => theme.transitions.normal};
+  
+  &:hover {
+    background: ${({ theme }) => theme.glass.background};
+    border-color: ${({ theme }) => theme.glass.borderStrong};
+    box-shadow: ${({ theme }) => theme.shadows.glass.lg};
+    transform: translateY(-4px);
+  }
 
   h3 {
-    font-size: 1.5rem;
-    margin-bottom: 1.5rem;
+    font-size: ${({ theme }) => theme.fontSize.xl};
+    font-weight: 700;
+    margin-bottom: ${({ theme }) => theme.spacing[6]};
     color: ${({ theme }) => theme.primary};
+    letter-spacing: -0.02em;
   }
 `;
 
@@ -48,13 +107,31 @@ const SkillList = styled.ul`
 const SkillItem = styled(motion.li)`
   display: flex;
   align-items: center;
-  margin-bottom: 1rem;
+  margin-bottom: ${({ theme }) => theme.spacing[3]};
   color: ${({ theme }) => theme.text};
+  font-size: ${({ theme }) => theme.fontSize.sm};
+  font-weight: 500;
+  padding: ${({ theme }) => `${theme.spacing[2]} ${theme.spacing[4]}`};
+  border-radius: ${({ theme }) => theme.borderRadius.lg};
+  
+  /* Subtle glass background */
+  background: ${({ theme }) => theme.glass.backgroundWeak};
+  border: 1px solid ${({ theme }) => theme.glass.border};
+  
+  transition: all ${({ theme }) => theme.transitions.fast};
+  
+  &:hover {
+    background: ${({ theme }) => theme.glass.background};
+    border-color: ${({ theme }) => theme.primary};
+    transform: translateX(4px);
+  }
 
   &:before {
     content: '▹';
     color: ${({ theme }) => theme.accent};
-    margin-right: 1rem;
+    margin-right: ${({ theme }) => theme.spacing[3]};
+    font-size: ${({ theme }) => theme.fontSize.base};
+    font-weight: 600;
   }
 `;
 

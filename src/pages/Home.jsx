@@ -20,10 +20,13 @@ const PageContainer = styled.div`
   min-height: 100vh;
   position: relative;
   background: ${({ theme }) => theme.background};
+  background-image: ${({ theme }) => theme.gradients.mesh};
+  background-attachment: fixed;
+  background-size: 100% 100%;
   overflow: hidden;
 
   @media (max-width: 768px) {
-    padding-top: 60px;
+    padding-top: 64px;
   }
 `;
 
@@ -33,10 +36,10 @@ const HomeContainer = styled.div`
   position: relative;
   overflow: hidden;
   z-index: 1;
-  padding-top: 64px;
+  padding-top: 72px;
 
   @media (max-width: 768px) {
-    padding-top: 32px;
+    padding-top: 64px;
   }
 `;
 
@@ -44,133 +47,248 @@ const Content = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 2rem;
+  padding: ${({ theme }) => theme.spacing[8]};
   max-width: 1200px;
   margin: 0 auto;
   position: relative;
   z-index: 2;
 
   @media (max-width: 768px) {
-    padding: 1rem;
+    padding: ${({ theme }) => theme.spacing[4]};
   }
 `;
 
 const HeroSection = styled.div`
   text-align: center;
-  padding: 2rem;
-  max-width: 800px;
+  padding: ${({ theme }) => theme.spacing[12]};
+  max-width: 900px;
   margin: 0 auto;
-  border: 2px solid ${({ theme }) => theme.primary};
-  border-radius: 12px;
-  background: ${({ theme }) => `rgba(${theme.backgroundRgba}, 0.8)`};
-  backdrop-filter: blur(10px);
+  
+  /* Enhanced glass morphism */
+  background: ${({ theme }) => theme.glass.background};
+  backdrop-filter: ${({ theme }) => theme.glass.backdropStrong};
+  -webkit-backdrop-filter: ${({ theme }) => theme.glass.backdropStrong};
+  border: 1px solid ${({ theme }) => theme.glass.border};
+  border-radius: ${({ theme }) => theme.borderRadius['3xl']};
+  box-shadow: ${({ theme }) => theme.shadows.glass.xl};
+  
+  /* Subtle gradient border */
+  position: relative;
+  
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    padding: 1px;
+    background: ${({ theme }) => theme.gradients.primary};
+    border-radius: ${({ theme }) => theme.borderRadius['3xl']};
+    mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    mask-composite: xor;
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    opacity: 0.3;
+  }
 
   @media (max-width: 768px) {
-    padding: 1.5rem;
-    margin: 0 1rem;
+    padding: ${({ theme }) => theme.spacing[8]};
+    margin: 0 ${({ theme }) => theme.spacing[4]};
+    border-radius: ${({ theme }) => theme.borderRadius['2xl']};
+    
+    &::before {
+      border-radius: ${({ theme }) => theme.borderRadius['2xl']};
+    }
   }
 `;
 
 const Title = styled(motion.h1)`
-  font-size: 3.5rem;
+  font-size: ${({ theme }) => theme.fontSize['6xl']};
+  font-weight: 900;
   text-align: center;
-  margin: 1rem 0;
-  background: linear-gradient(45deg, ${({ theme }) => theme.primary}, ${({ theme }) => theme.accent});
+  margin: ${({ theme }) => theme.spacing[6]} 0;
+  letter-spacing: -0.04em;
+  line-height: 1.1;
+  
+  /* Enhanced gradient text */
+  background: ${({ theme }) => theme.gradients.hero};
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
+  background-clip: text;
+  
+  /* Text shadow for depth */
+  filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.1));
 
   @media (max-width: 768px) {
-    font-size: 2.5rem;
-    margin: 0.5rem 0;
+    font-size: ${({ theme }) => theme.fontSize['4xl']};
+    margin: ${({ theme }) => theme.spacing[4]} 0;
+  }
+  
+  @media (max-width: 480px) {
+    font-size: ${({ theme }) => theme.fontSize['3xl']};
   }
 `;
 
 const Subtitle = styled(motion.h2)`
-  font-size: 1.5rem;
+  font-size: ${({ theme }) => theme.fontSize['2xl']};
+  font-weight: 600;
   text-align: center;
   color: ${({ theme }) => theme.text};
-  margin: 0.5rem 0;
+  margin: ${({ theme }) => theme.spacing[4]} 0;
+  letter-spacing: -0.02em;
+  opacity: 0.9;
 
   @media (max-width: 768px) {
-    font-size: 1.2rem;
+    font-size: ${({ theme }) => theme.fontSize.xl};
+    margin: ${({ theme }) => theme.spacing[3]} 0;
   }
 `;
 
 const TagLine = styled(motion.p)`
-  font-size: 1.2rem;
+  font-size: ${({ theme }) => theme.fontSize.lg};
   text-align: center;
-  color: ${({ theme }) => theme.text};
-  margin: 1rem 0;
-  line-height: 1.6;
+  color: ${({ theme }) => theme.secondary};
+  margin: ${({ theme }) => theme.spacing[6]} 0;
+  line-height: 1.7;
+  max-width: 600px;
+  opacity: 0.8;
 
   @media (max-width: 768px) {
-    font-size: 1rem;
-    margin: 0.8rem 0;
+    font-size: ${({ theme }) => theme.fontSize.base};
+    margin: ${({ theme }) => theme.spacing[4]} 0;
   }
 `;
 
 const SocialLinks = styled(motion.div)`
   display: flex;
-  gap: 1.5rem;
+  gap: ${({ theme }) => theme.spacing[6]};
   justify-content: center;
-  margin: 2rem 0;
+  margin: ${({ theme }) => theme.spacing[8]} 0;
 
   @media (max-width: 768px) {
-    gap: 1rem;
-    margin: 1.5rem 0;
+    gap: ${({ theme }) => theme.spacing[4]};
+    margin: ${({ theme }) => theme.spacing[6]} 0;
   }
 `;
 
 const ButtonContainer = styled.div`
   display: flex;
-  gap: 1.5rem;
+  gap: ${({ theme }) => theme.spacing[6]};
   justify-content: center;
-  margin: 2rem 0;
+  margin: ${({ theme }) => theme.spacing[8]} 0;
 
   @media (max-width: 768px) {
     flex-direction: column;
-    gap: 1rem;
-    margin: 1.5rem 0;
+    gap: ${({ theme }) => theme.spacing[4]};
+    margin: ${({ theme }) => theme.spacing[6]} 0;
+    align-items: center;
   }
 `;
 
 const AboutSection = styled(motion.section)`
-  padding: 4rem 2rem;
+  padding: ${({ theme }) => theme.spacing[16]} ${({ theme }) => theme.spacing[8]};
   text-align: center;
   max-width: 800px;
   margin: 0 auto;
 
   @media (max-width: 768px) {
-    padding: 2rem 1rem;
+    padding: ${({ theme }) => theme.spacing[12]} ${({ theme }) => theme.spacing[4]};
   }
 `;
 
 const SocialLink = styled(motion.a)`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 56px;
+  height: 56px;
   color: ${({ theme }) => theme.text};
-  font-size: 1.8rem;
-  transition: all 0.3s ease;
+  font-size: ${({ theme }) => theme.fontSize['2xl']};
+  border-radius: ${({ theme }) => theme.borderRadius.xl};
+  
+  /* Glass morphism background */
+  background: ${({ theme }) => theme.glass.backgroundWeak};
+  backdrop-filter: ${({ theme }) => theme.glass.backdrop};
+  -webkit-backdrop-filter: ${({ theme }) => theme.glass.backdrop};
+  border: 1px solid ${({ theme }) => theme.glass.border};
+  box-shadow: ${({ theme }) => theme.shadows.glass.sm};
+  
+  transition: all ${({ theme }) => theme.transitions.normal};
 
   &:hover {
     color: ${({ theme }) => theme.primary};
-    transform: translateY(-3px);
+    background: ${({ theme }) => theme.glass.background};
+    border-color: ${({ theme }) => theme.glass.borderStrong};
+    box-shadow: ${({ theme }) => theme.shadows.glass.md};
+    transform: translateY(-4px) scale(1.05);
+  }
+  
+  @media (max-width: 768px) {
+    width: 48px;
+    height: 48px;
+    font-size: ${({ theme }) => theme.fontSize.xl};
   }
 `;
 
 const Button = styled(motion.a)`
-  padding: 0.8rem 2rem;
-  border-radius: 30px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: ${({ theme }) => `${theme.spacing[4]} ${theme.spacing[8]}`};
+  border-radius: ${({ theme }) => theme.borderRadius['2xl']};
   text-decoration: none;
   font-weight: 600;
-  transition: all 0.3s ease;
+  font-size: ${({ theme }) => theme.fontSize.base};
+  letter-spacing: -0.01em;
+  min-width: 160px;
+  
+  /* Enhanced glass morphism styling */
   background: ${({ $primary, theme }) => 
-    $primary ? `linear-gradient(45deg, ${theme.primary}, ${theme.accent})` : 'transparent'};
-  color: ${({ $primary, theme }) => $primary ? '#fff' : theme.text};
-  border: ${({ $primary, theme }) => 
-    $primary ? 'none' : `2px solid ${theme.primary}`};
+    $primary 
+      ? theme.gradients.button
+      : theme.glass.background
+  };
+  color: ${({ $primary, theme }) => $primary ? '#ffffff' : theme.text};
+  border: 1px solid ${({ $primary, theme }) => 
+    $primary ? 'transparent' : theme.glass.border};
+  
+  /* Glass effects for secondary button */
+  ${({ $primary, theme }) => !$primary && `
+    backdrop-filter: ${theme.glass.backdrop};
+    -webkit-backdrop-filter: ${theme.glass.backdrop};
+    box-shadow: ${theme.shadows.glass.sm};
+  `}
+  
+  /* Primary button shadow */
+  ${({ $primary, theme }) => $primary && `
+    box-shadow: ${theme.shadows.colored.primary};
+  `}
+  
+  transition: all ${({ theme }) => theme.transitions.normal};
 
   &:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    transform: translateY(-2px) scale(1.02);
+    
+    ${({ $primary, theme }) => $primary 
+      ? `
+        box-shadow: ${theme.shadows.colored.primary}, 0 8px 25px rgba(0, 0, 0, 0.15);
+        filter: brightness(1.1);
+      `
+      : `
+        background: ${theme.glass.backgroundStrong};
+        border-color: ${theme.glass.borderStrong};
+        box-shadow: ${theme.shadows.glass.md};
+        color: ${theme.primary};
+      `
+    }
+  }
+  
+  &:active {
+    transform: translateY(-1px) scale(1.01);
+  }
+  
+  @media (max-width: 768px) {
+    padding: ${({ theme }) => `${theme.spacing[3]} ${theme.spacing[6]}`};
+    font-size: ${({ theme }) => theme.fontSize.sm};
+    min-width: 140px;
   }
 `;
 
