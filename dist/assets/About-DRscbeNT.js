@@ -1,4 +1,4 @@
-import{j as i}from"./index-d1cPc047.js";import{d as r,m as t}from"./styling-JrEYv7ut.js";import{S as g}from"./SkillsSection-ChX2XRgZ.js";import"./vendor-IUCS5aZ6.js";import"./index-CNwvuJSz.js";const j=r.div`
+import{j as i}from"./three-BSiCeBfb.js";import{d as r,m as t}from"./styling-JrEYv7ut.js";import{S as g}from"./SkillsSection-D-JuCSbm.js";import"./vendor-IUCS5aZ6.js";import"./index-CNwvuJSz.js";const j=r.div`
   padding: 4rem 2rem;
   max-width: 1000px;
   margin: 0 auto;

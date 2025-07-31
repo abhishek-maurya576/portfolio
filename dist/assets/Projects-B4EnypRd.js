@@ -1,4 +1,4 @@
-import{j as t}from"./index-d1cPc047.js";import{d as e,m as n}from"./styling-JrEYv7ut.js";import{l as s,m as c,t as m}from"./linkzy-chat-BL2xj726.js";import"./vendor-IUCS5aZ6.js";const l=e.div`
+import{j as t}from"./three-BSiCeBfb.js";import{d as e,m as n}from"./styling-JrEYv7ut.js";import{l as s,m as c,t as m}from"./linkzy-chat-BL2xj726.js";import"./vendor-IUCS5aZ6.js";const l=e.div`
   padding: 4rem 2rem;
   max-width: 1200px;
   margin: 0 auto;

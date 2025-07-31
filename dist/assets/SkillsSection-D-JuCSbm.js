@@ -1,4 +1,4 @@
-import{j as r}from"./index-d1cPc047.js";import{d as a,m as o}from"./styling-JrEYv7ut.js";import{u as g}from"./index-CNwvuJSz.js";const c=a(o.section)`
+import{j as r}from"./three-BSiCeBfb.js";import{d as a,m as o}from"./styling-JrEYv7ut.js";import{u as g}from"./index-CNwvuJSz.js";const c=a(o.section)`
   padding: ${({theme:i})=>i.spacing[24]} ${({theme:i})=>i.spacing[8]};
   
   /* Enhanced glass morphism */
