@@ -10,7 +10,10 @@
     "lint": "eslint . --ext js,jsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview",
     "predeploy": "npm run build",
-    "deploy": "gh-pages -d dist --maxFileLength 255"
+    "deploy": "gh-pages -d dist",
+    "clean": "rm -rf dist",
+    "build:prod": "npm run clean && npm run build",
+    "deploy:force": "npm run build:prod && gh-pages -d dist --force"
   },
   "dependencies": {
     "@react-three/drei": "^9.120.8",

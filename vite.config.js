@@ -14,15 +14,22 @@ export default defineConfig({
         manualChunks: {
           vendor: ['react', 'react-dom', 'react-router-dom'],
           styling: ['styled-components', 'framer-motion'],
+          three: ['three', '@react-three/fiber', '@react-three/drei'],
         },
       },
       onwarn(warning, warn) {
-        // Ignore eval warnings from lottie.js
-        if (warning.code === 'EVAL' && warning.id?.includes('lottie.js')) {
+        // Ignore eval warnings from lottie.js and three.js
+        if (warning.code === 'EVAL' && (warning.id?.includes('lottie.js') || warning.id?.includes('three'))) {
           return;
         }
         warn(warning);
       }
     },
+  },
+  // Ensure proper asset handling
+  assetsInclude: ['**/*.pdf'],
+  // Define environment variables
+  define: {
+    'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV || 'production'),
   },
 })
