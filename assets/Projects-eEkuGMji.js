@@ -1,19 +1,13 @@
-import styled from 'styled-components';
-import { motion } from 'framer-motion';
-import muzicPlayerImg from '../assets/images/projects/muzic-player.png';
-import ticTacToeImg from '../assets/images/projects/tic-tac-toe.png';
-import linkzyChatImg from '../assets/images/projects/linkzy-chat.png';
-
-const ProjectsContainer = styled.div`
+import{j as t}from"./three-BSiCeBfb.js";import{d as r,m as e}from"./styling-JrEYv7ut.js";import{l as d,m as l,t as g}from"./linkzy-chat-BL2xj726.js";import"./vendor-IUCS5aZ6.js";const c=r.div`
   min-height: 100vh;
-  padding: ${({ theme }) => theme.spacing[20]} ${({ theme }) => theme.spacing[8]};
+  padding: ${({theme:a})=>a.spacing[20]} ${({theme:a})=>a.spacing[8]};
   
   /* Liquid glass morphism background */
   background: 
     /* Primary mesh gradient */
-    ${({ theme }) => theme.gradients.mesh},
+    ${({theme:a})=>a.gradients.mesh},
     /* Base background */
-    ${({ theme }) => theme.background};
+    ${({theme:a})=>a.background};
   background-attachment: fixed;
   background-size: 100% 100%;
   
@@ -32,7 +26,7 @@ const ProjectsContainer = styled.div`
       radial-gradient(circle at 20% 30%, rgba(255, 255, 255, 0.1) 0%, transparent 40%),
       radial-gradient(circle at 80% 70%, rgba(255, 255, 255, 0.08) 0%, transparent 40%),
       radial-gradient(circle at 40% 80%, rgba(255, 255, 255, 0.06) 0%, transparent 40%),
-      ${({ theme }) => theme.glass.backgroundWeak};
+      ${({theme:a})=>a.glass.backgroundWeak};
     backdrop-filter: blur(20px) saturate(180%);
     -webkit-backdrop-filter: blur(20px) saturate(180%);
     pointer-events: none;
@@ -55,53 +49,45 @@ const ProjectsContainer = styled.div`
     pointer-events: none;
     z-index: 0;
   }
-`;
-
-const ContentWrapper = styled.div`
+`,p=r.div`
   position: relative;
   z-index: 2;
   max-width: 1200px;
   margin: 0 auto;
-`;
-
-const Title = styled(motion.h2)`
-  font-size: ${({ theme }) => theme.fontSize['4xl']};
+`,b=r(e.h2)`
+  font-size: ${({theme:a})=>a.fontSize["4xl"]};
   font-weight: 800;
-  margin-bottom: ${({ theme }) => theme.spacing[12]};
+  margin-bottom: ${({theme:a})=>a.spacing[12]};
   text-align: center;
   letter-spacing: -0.03em;
   
   /* Enhanced gradient text */
-  background: ${({ theme }) => theme.gradients.hero};
+  background: ${({theme:a})=>a.gradients.hero};
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
   
   @media (max-width: 768px) {
-    font-size: ${({ theme }) => theme.fontSize['3xl']};
-    margin-bottom: ${({ theme }) => theme.spacing[8]};
+    font-size: ${({theme:a})=>a.fontSize["3xl"]};
+    margin-bottom: ${({theme:a})=>a.spacing[8]};
   }
-`;
-
-const ProjectGrid = styled(motion.div)`
+`,u=r(e.div)`
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-  gap: ${({ theme }) => theme.spacing[8]};
-  padding: ${({ theme }) => theme.spacing[8]} 0;
+  gap: ${({theme:a})=>a.spacing[8]};
+  padding: ${({theme:a})=>a.spacing[8]} 0;
   
   @media (max-width: 768px) {
     grid-template-columns: 1fr;
-    gap: ${({ theme }) => theme.spacing[6]};
-    padding: ${({ theme }) => theme.spacing[6]} 0;
+    gap: ${({theme:a})=>a.spacing[6]};
+    padding: ${({theme:a})=>a.spacing[6]} 0;
   }
-`;
-
-const ProjectCard = styled(motion.div)`
+`,f=r(e.div)`
   /* Liquid glass morphism card */
   background: 
     /* Multiple glass layers */
     linear-gradient(135deg, rgba(255, 255, 255, 0.15) 0%, rgba(255, 255, 255, 0.05) 100%),
-    ${({ theme }) => theme.glass.background};
+    ${({theme:a})=>a.glass.background};
   
   /* Enhanced backdrop blur */
   backdrop-filter: blur(25px) saturate(200%) brightness(110%);
@@ -113,7 +99,7 @@ const ProjectCard = styled(motion.div)`
     rgba(255, 255, 255, 0.3) 0%, 
     rgba(255, 255, 255, 0.1) 50%, 
     rgba(255, 255, 255, 0.2) 100%) 1;
-  border-radius: ${({ theme }) => theme.borderRadius['3xl']};
+  border-radius: ${({theme:a})=>a.borderRadius["3xl"]};
   
   /* Enhanced shadows */
   box-shadow: 
@@ -157,7 +143,7 @@ const ProjectCard = styled(motion.div)`
       rgba(118, 75, 162, 0.4) 50%,
       rgba(59, 130, 246, 0.4) 75%,
       rgba(103, 126, 234, 0.4) 100%);
-    border-radius: ${({ theme }) => theme.borderRadius['3xl']};
+    border-radius: ${({theme:a})=>a.borderRadius["3xl"]};
     mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
     mask-composite: xor;
     -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
@@ -170,7 +156,7 @@ const ProjectCard = styled(motion.div)`
     /* Enhanced glass effect on hover */
     background: 
       linear-gradient(135deg, rgba(255, 255, 255, 0.25) 0%, rgba(255, 255, 255, 0.1) 100%),
-      ${({ theme }) => theme.glass.backgroundStrong};
+      ${({theme:a})=>a.glass.backgroundStrong};
     
     backdrop-filter: blur(30px) saturate(250%) brightness(120%);
     -webkit-backdrop-filter: blur(30px) saturate(250%) brightness(120%);
@@ -192,13 +178,11 @@ const ProjectCard = styled(motion.div)`
       opacity: 0.6;
     }
   }
-`;
-
-const ProjectImage = styled.div`
+`,x=r.div`
   width: 100%;
   height: 260px;
   overflow: hidden;
-  border-radius: ${({ theme }) => theme.borderRadius['3xl']} ${({ theme }) => theme.borderRadius['3xl']} 0 0;
+  border-radius: ${({theme:a})=>a.borderRadius["3xl"]} ${({theme:a})=>a.borderRadius["3xl"]} 0 0;
   position: relative;
   
   /* Liquid glass overlay with multiple layers */
@@ -216,7 +200,7 @@ const ProjectImage = styled.div`
         rgba(255, 255, 255, 0.05) 50%, 
         rgba(255, 255, 255, 0.08) 100%),
       /* Frosted glass effect */
-      ${({ theme }) => theme.glass.backgroundWeak};
+      ${({theme:a})=>a.glass.backgroundWeak};
     backdrop-filter: blur(2px);
     -webkit-backdrop-filter: blur(2px);
     opacity: 0.3;
@@ -267,50 +251,40 @@ const ProjectImage = styled.div`
       transform: translateX(100%) translateY(100%);
     }
   }
-`;
-
-const ProjectContent = styled.div`
-  padding: ${({ theme }) => theme.spacing[6]};
+`,h=r.div`
+  padding: ${({theme:a})=>a.spacing[6]};
   position: relative;
   z-index: 1;
-`;
-
-const ProjectTitle = styled.h3`
-  font-size: ${({ theme }) => theme.fontSize.xl};
+`,m=r.h3`
+  font-size: ${({theme:a})=>a.fontSize.xl};
   font-weight: 700;
-  color: ${({ theme }) => theme.primary};
-  margin-bottom: ${({ theme }) => theme.spacing[4]};
+  color: ${({theme:a})=>a.primary};
+  margin-bottom: ${({theme:a})=>a.spacing[4]};
   letter-spacing: -0.02em;
-`;
-
-const ProjectDescription = styled.p`
-  color: ${({ theme }) => theme.text};
-  margin-bottom: ${({ theme }) => theme.spacing[4]};
+`,k=r.p`
+  color: ${({theme:a})=>a.text};
+  margin-bottom: ${({theme:a})=>a.spacing[4]};
   line-height: 1.7;
-  font-size: ${({ theme }) => theme.fontSize.sm};
+  font-size: ${({theme:a})=>a.fontSize.sm};
   opacity: 0.9;
-`;
-
-const TechStack = styled.div`
+`,$=r.div`
   display: flex;
   flex-wrap: wrap;
-  gap: ${({ theme }) => theme.spacing[2]};
-  margin-top: ${({ theme }) => theme.spacing[4]};
-`;
-
-const TechTag = styled.span`
+  gap: ${({theme:a})=>a.spacing[2]};
+  margin-top: ${({theme:a})=>a.spacing[4]};
+`,y=r.span`
   /* Liquid glass morphism tech tags */
   background: 
     linear-gradient(135deg, rgba(255, 255, 255, 0.2) 0%, rgba(255, 255, 255, 0.1) 100%),
-    ${({ theme }) => theme.glass.backgroundWeak};
+    ${({theme:a})=>a.glass.backgroundWeak};
   backdrop-filter: blur(15px) saturate(180%);
   -webkit-backdrop-filter: blur(15px) saturate(180%);
   
-  color: ${({ theme }) => theme.primary};
+  color: ${({theme:a})=>a.primary};
   border: 1px solid rgba(255, 255, 255, 0.2);
-  padding: ${({ theme }) => `${theme.spacing[2]} ${theme.spacing[4]}`};
-  border-radius: ${({ theme }) => theme.borderRadius.full};
-  font-size: ${({ theme }) => theme.fontSize.xs};
+  padding: ${({theme:a})=>`${a.spacing[2]} ${a.spacing[4]}`};
+  border-radius: ${({theme:a})=>a.borderRadius.full};
+  font-size: ${({theme:a})=>a.fontSize.xs};
   font-weight: 700;
   letter-spacing: 0.02em;
   
@@ -337,15 +311,15 @@ const TechTag = styled.span`
       rgba(255, 255, 255, 0.3) 50%, 
       transparent 100%);
     transition: left 0.5s ease;
-    border-radius: ${({ theme }) => theme.borderRadius.full};
+    border-radius: ${({theme:a})=>a.borderRadius.full};
   }
   
   &:hover {
     background: 
       linear-gradient(135deg, rgba(255, 255, 255, 0.3) 0%, rgba(255, 255, 255, 0.15) 100%),
-      ${({ theme }) => theme.glass.background};
-    border-color: ${({ theme }) => theme.primary};
-    color: ${({ theme }) => theme.primary};
+      ${({theme:a})=>a.glass.background};
+    border-color: ${({theme:a})=>a.primary};
+    color: ${({theme:a})=>a.primary};
     
     box-shadow: 
       inset 0 1px 0 rgba(255, 255, 255, 0.4),
@@ -358,105 +332,11 @@ const TechTag = styled.span`
       left: 100%;
     }
   }
-`;
-
-const ProjectStatus = styled.div`
-  color: ${({ theme }) => theme.secondary};
-  font-size: ${({ theme }) => theme.fontSize.xs};
-  margin-top: ${({ theme }) => theme.spacing[4]};
-  padding-top: ${({ theme }) => theme.spacing[4]};
-  border-top: 1px solid ${({ theme }) => theme.glass.border};
+`;r.div`
+  color: ${({theme:a})=>a.secondary};
+  font-size: ${({theme:a})=>a.fontSize.xs};
+  margin-top: ${({theme:a})=>a.spacing[4]};
+  padding-top: ${({theme:a})=>a.spacing[4]};
+  border-top: 1px solid ${({theme:a})=>a.glass.border};
   opacity: 0.8;
-`;
-
-const Projects = () => {
-  const projects = [
-    {
-      id: 1,
-      title: "Linkzy Chat App",
-      description: "A real-time chatting app built with Firebase backend, featuring user authentication and live messaging capabilities.",
-      tech: ["Flutter", "Firebase", "Android Studio", ],
-      image: linkzyChatImg
-    },
-    {
-      id: 2,
-      title: "Muzic App",
-      description: "Feature-rich music player with local playback, notification controls, and background playback support.",
-      tech: ["Java", "Android Studio"],
-      image: muzicPlayerImg
-    },
-    {
-      id: 3,
-      title: "Tic Tac Toe Game",
-      description: "An interactive Tic Tac Toe game for Android, created with AI assistance.",
-      tech: ["Java", "Android Studio", "AI"],
-      image: ticTacToeImg
-    }
-  ];
-
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.2
-      }
-    }
-  };
-
-  const cardVariants = {
-    hidden: { opacity: 0, y: 20 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: {
-        duration: 0.5
-      }
-    }
-  };
-
-  return (
-    <ProjectsContainer>
-      <ContentWrapper>
-        <Title
-          initial={{ opacity: 0, y: -20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
-        >
-          My Projects
-        </Title>
-        <ProjectGrid
-          variants={containerVariants}
-          initial="hidden"
-          animate="visible"
-        >
-          {projects.map((project) => (
-            <ProjectCard
-              key={project.id}
-              variants={cardVariants}
-              initial="hidden"
-              animate="visible"
-              whileHover={{ y: -8, scale: 1.02 }}
-              transition={{ duration: 0.3 }}
-            >
-              <ProjectImage>
-                <img src={project.image} alt={project.title} />
-              </ProjectImage>
-              <ProjectContent>
-                <ProjectTitle>{project.title}</ProjectTitle>
-                <ProjectDescription>{project.description}</ProjectDescription>
-                <TechStack>
-                  {project.tech.map((tech) => (
-                    <TechTag key={tech}>{tech}</TechTag>
-                  ))}
-                </TechStack>
-              </ProjectContent>
-            </ProjectCard>
-          ))}
-        </ProjectGrid>
-      </ContentWrapper>
-    </ProjectsContainer>
-  );
-};
-
-export default Projects;
+`;const S=()=>{const a=[{id:1,title:"Linkzy Chat App",description:"A real-time chatting app built with Firebase backend, featuring user authentication and live messaging capabilities.",tech:["Flutter","Firebase","Android Studio"],image:d},{id:2,title:"Muzic App",description:"Feature-rich music player with local playback, notification controls, and background playback support.",tech:["Java","Android Studio"],image:l},{id:3,title:"Tic Tac Toe Game",description:"An interactive Tic Tac Toe game for Android, created with AI assistance.",tech:["Java","Android Studio","AI"],image:g}],o={hidden:{opacity:0},visible:{opacity:1,transition:{staggerChildren:.2}}},s={hidden:{opacity:0,y:20},visible:{opacity:1,y:0,transition:{duration:.5}}};return t.jsx(c,{children:t.jsxs(p,{children:[t.jsx(b,{initial:{opacity:0,y:-20},animate:{opacity:1,y:0},transition:{duration:.5},children:"My Projects"}),t.jsx(u,{variants:o,initial:"hidden",animate:"visible",children:a.map(i=>t.jsxs(f,{variants:s,initial:"hidden",animate:"visible",whileHover:{y:-8,scale:1.02},transition:{duration:.3},children:[t.jsx(x,{children:t.jsx("img",{src:i.image,alt:i.title})}),t.jsxs(h,{children:[t.jsx(m,{children:i.title}),t.jsx(k,{children:i.description}),t.jsx($,{children:i.tech.map(n=>t.jsx(y,{children:n},n))})]})]},i.id))})]})})};export{S as default};
