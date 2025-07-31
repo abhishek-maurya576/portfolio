@@ -8,18 +8,37 @@ const ButtonContainer = styled.div`
 `;
 
 const MainButton = styled.button`
-  padding: 12px 24px;
-  background-color: transparent;
-  color: #000;
-  border: 2px solid #1e88e5;
-  border-radius: 30px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: ${({ theme }) => `${theme.spacing[4]} ${theme.spacing[8]}`};
+  border-radius: ${({ theme }) => theme.borderRadius['2xl']};
   cursor: pointer;
-  font-size: 1rem;
-  transition: all 0.3s ease;
+  font-size: ${({ theme }) => theme.fontSize.base};
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  min-width: 160px;
+  
+  /* Glass morphism styling */
+  background: ${({ theme }) => theme.glass.background};
+  backdrop-filter: ${({ theme }) => theme.glass.backdrop};
+  -webkit-backdrop-filter: ${({ theme }) => theme.glass.backdrop};
+  color: ${({ theme }) => theme.text};
+  border: 1px solid ${({ theme }) => theme.glass.border};
+  box-shadow: ${({ theme }) => theme.shadows.glass.sm};
+  
+  transition: all ${({ theme }) => theme.transitions.normal};
 
   &:hover {
-    background-color: #1e88e5;
-    color: white;
+    background: ${({ theme }) => theme.glass.backgroundStrong};
+    border-color: ${({ theme }) => theme.glass.borderStrong};
+    box-shadow: ${({ theme }) => theme.shadows.glass.md};
+    color: ${({ theme }) => theme.primary};
+    transform: translateY(-2px) scale(1.02);
+  }
+  
+  &:active {
+    transform: translateY(-1px) scale(1.01);
   }
 `;
 
@@ -28,14 +47,19 @@ const DropdownContent = styled.div`
   top: 100%;
   left: 50%;
   transform: translateX(-50%);
-  background-color: white;
-  min-width: 160px;
-  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-  border-radius: 8px;
-  padding: 8px 0;
-  margin-top: 8px;
-  z-index: 1000;
+  min-width: 180px;
+  padding: ${({ theme }) => theme.spacing[2]} 0;
+  margin-top: ${({ theme }) => theme.spacing[2]};
+  z-index: ${({ theme }) => theme.zIndex.dropdown};
   display: ${props => props.$isOpen ? 'block' : 'none'};
+  
+  /* Enhanced glass morphism */
+  background: ${({ theme }) => theme.glass.backgroundStrong};
+  backdrop-filter: ${({ theme }) => theme.glass.backdropStrong};
+  -webkit-backdrop-filter: ${({ theme }) => theme.glass.backdropStrong};
+  border: 1px solid ${({ theme }) => theme.glass.borderStrong};
+  border-radius: ${({ theme }) => theme.borderRadius.xl};
+  box-shadow: ${({ theme }) => theme.shadows.glass.lg};
 
   &::before {
     content: '';
@@ -45,30 +69,38 @@ const DropdownContent = styled.div`
     transform: translateX(-50%);
     border-width: 0 8px 8px 8px;
     border-style: solid;
-    border-color: transparent transparent white transparent;
+    border-color: transparent transparent ${({ theme }) => theme.glass.backgroundStrong} transparent;
   }
 `;
 
 const DropdownButton = styled.button`
   width: 100%;
-  padding: 12px 16px;
+  padding: ${({ theme }) => `${theme.spacing[3]} ${theme.spacing[4]}`};
   background: none;
   border: none;
   text-align: left;
   cursor: pointer;
-  transition: background-color 0.2s;
-  color: #333;
+  color: ${({ theme }) => theme.text};
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: ${({ theme }) => theme.spacing[3]};
+  font-size: ${({ theme }) => theme.fontSize.sm};
+  font-weight: 500;
+  border-radius: ${({ theme }) => theme.borderRadius.lg};
+  margin: 0 ${({ theme }) => theme.spacing[2]};
+  
+  transition: all ${({ theme }) => theme.transitions.fast};
 
   &:hover {
-    background-color: #f5f5f5;
+    background: ${({ theme }) => theme.glass.backgroundWeak};
+    color: ${({ theme }) => theme.primary};
+    transform: translateX(4px);
   }
 
   svg {
     width: 16px;
     height: 16px;
+    opacity: 0.8;
   }
 `;
 

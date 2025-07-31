@@ -8,55 +8,128 @@ const Nav = styled(motion.nav)`
   top: 0;
   left: 0;
   right: 0;
-  height: 64px;
+  height: 72px;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0 2rem;
-  background: ${({ theme }) => `rgba(${theme.backgroundRgba}, 0.8)`};
-  backdrop-filter: blur(10px);
-  z-index: 1000;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 0 ${({ theme }) => theme.spacing[8]};
+  
+  /* Enhanced glass morphism */
+  background: ${({ theme }) => theme.glass.background};
+  backdrop-filter: ${({ theme }) => theme.glass.backdropStrong};
+  -webkit-backdrop-filter: ${({ theme }) => theme.glass.backdropStrong};
+  border-bottom: 1px solid ${({ theme }) => theme.glass.border};
+  box-shadow: ${({ theme }) => theme.shadows.glass.md};
+  
+  z-index: ${({ theme }) => theme.zIndex.sticky};
+  transition: all ${({ theme }) => theme.transitions.normal};
+  
+  /* Responsive padding */
+  @media (max-width: 768px) {
+    padding: 0 ${({ theme }) => theme.spacing[4]};
+    height: 64px;
+  }
+  
+  /* Hover effect */
+  &:hover {
+    background: ${({ theme }) => theme.glass.backgroundStrong};
+    border-bottom-color: ${({ theme }) => theme.glass.borderStrong};
+  }
 `;
 
 const Logo = styled(Link)`
-  font-size: 1.5rem;
-  font-weight: 700;
-  color: ${({ theme }) => theme.primary};
-  background: linear-gradient(45deg, ${({ theme }) => theme.primary}, ${({ theme }) => theme.accent});
+  font-size: ${({ theme }) => theme.fontSize['2xl']};
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  text-decoration: none;
+  
+  /* Enhanced gradient text */
+  background: ${({ theme }) => theme.gradients.text};
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-  text-decoration: none;
+  background-clip: text;
+  
+  /* Smooth transitions */
+  transition: all ${({ theme }) => theme.transitions.normal};
+  
+  /* Hover effect */
+  &:hover {
+    transform: scale(1.05);
+    filter: brightness(1.1);
+  }
+  
+  /* Responsive sizing */
+  @media (max-width: 768px) {
+    font-size: ${({ theme }) => theme.fontSize.xl};
+  }
 `;
 
 const NavLinks = styled.div`
   display: flex;
-  gap: 2rem;
+  gap: ${({ theme }) => theme.spacing[8]};
+  align-items: center;
+  
+  @media (max-width: 768px) {
+    gap: ${({ theme }) => theme.spacing[6]};
+  }
+  
+  @media (max-width: 640px) {
+    gap: ${({ theme }) => theme.spacing[4]};
+  }
 `;
 
 const NavLink = styled(Link)`
+  position: relative;
   color: ${({ theme, $isActive }) => $isActive ? theme.primary : theme.text};
   text-decoration: none;
-  font-weight: ${({ $isActive }) => $isActive ? '600' : '400'};
-  position: relative;
-  transition: color 0.3s ease;
+  font-weight: ${({ $isActive }) => $isActive ? '600' : '500'};
+  font-size: ${({ theme }) => theme.fontSize.sm};
+  letter-spacing: -0.01em;
+  padding: ${({ theme }) => `${theme.spacing[2]} ${theme.spacing[3]}`};
+  border-radius: ${({ theme }) => theme.borderRadius.lg};
+  
+  /* Glass morphism background for active state */
+  background: ${({ theme, $isActive }) => 
+    $isActive ? theme.glass.backgroundWeak : 'transparent'};
+  border: 1px solid ${({ theme, $isActive }) => 
+    $isActive ? theme.glass.border : 'transparent'};
+  
+  transition: all ${({ theme }) => theme.transitions.normal};
 
+  /* Enhanced underline effect */
   &::after {
     content: '';
     position: absolute;
-    bottom: -4px;
-    left: 0;
-    width: ${({ $isActive }) => $isActive ? '100%' : '0'};
+    bottom: -2px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: ${({ $isActive }) => $isActive ? '80%' : '0'};
     height: 2px;
-    background: ${({ theme }) => theme.primary};
-    transition: width 0.3s ease;
+    background: ${({ theme }) => theme.gradients.primary};
+    border-radius: ${({ theme }) => theme.borderRadius.full};
+    transition: all ${({ theme }) => theme.transitions.normal};
   }
 
   &:hover {
     color: ${({ theme }) => theme.primary};
+    background: ${({ theme }) => theme.glass.backgroundWeak};
+    border-color: ${({ theme }) => theme.glass.border};
+    transform: translateY(-1px);
+    
     &::after {
-      width: 100%;
+      width: 80%;
     }
+  }
+  
+  /* Active state enhancements */
+  ${({ $isActive, theme }) => $isActive && `
+    color: ${theme.primary};
+    box-shadow: ${theme.shadows.glass.sm};
+  `}
+  
+  @media (max-width: 640px) {
+    font-size: ${({ theme }) => theme.fontSize.xs};
+    padding: ${({ theme }) => `${theme.spacing[1.5]} ${theme.spacing[2]}`};
   }
 `;
 
