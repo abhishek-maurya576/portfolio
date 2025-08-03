@@ -10,8 +10,8 @@ import snakeGameImg from '../assets/images/projects/snake-game.png';
 import stopwatchImg from '../assets/images/projects/stopwatch.png';
 import loginSignupImg from '../assets/images/projects/login-page.png';
 import sgameImg from '../assets/images/projects/snake.webp';
-import aichatbotImg from '../assets/images/projects/ACB.png'
-
+import aichatbotImg from '../assets/images/projects/ACB.png';
+import love_3DImg from '../assets/images/projects/3D_love.png';
 
 const SectionContainer = styled.section`
   padding: 6rem 1rem;
@@ -228,13 +228,21 @@ const ViewButton = styled.a`
 `;
 
 const projects = [
-   {
-    "title": "AI Chat Bot Agent",
-    "description": "An advanced AI-powered assistant application for Android, integrating natural language processing, automated interactions, and accessibility features.",
-    "image": aichatbotImg,
-    "techStack": ["Kotlin", "Android Studio", "Google Gemini AI", "Room Database"],
-    "liveDemo": "https://github.com/abhishek-maurya576/AiChatBot/releases",
-    "sourceCode": "https://github.com/abhishek-maurya576/AiChatBot"
+  {
+    title: "Linkzy Chat App",
+    description: "A real-time chatting application with Firebase backend, featuring user authentication and live messaging capabilities.",
+    image: linkzyChatImg,
+    techStack: ["Flutter", "Firebase", "Android Studio"],
+    sourceCode: "https://github.com/abhishek-maurya576/linkzy",
+    liveDemo: "https://github.com/abhishek-maurya576/linkzy/releases",
+  },
+{
+    title: "3D Love",
+    description: "A rotating cube with a secret message, hover effects, and endless vibes – perfect for coders, lovers, and Gen Z chaos enthusiasts.",
+    image: love_3DImg,
+    techStack: ["Html", "CSS", "Javascript"],
+    sourceCode: "https://github.com/abhishek-maurya576/3D_love",
+    liveDemo: "https://abhishek-maurya576.github.io/3D_love/",
   },
 
   {
@@ -286,13 +294,13 @@ const projects = [
     liveDemo: "https://github.com/abhishek-maurya576/Tic-Tac-Toe-AI/releases/tag/v4.0.0",
     sourceCode: "https://github.com/abhishek-maurya576/Tic-Tac-Toe-AI"
   },
-  {
-    title: "Linkzy Chat App",
-    description: "A real-time chatting application with Firebase backend, featuring user authentication and live messaging capabilities.",
-    image: linkzyChatImg,
-    techStack: ["Flutter", "Firebase", "Android Studio"],
-    sourceCode: "https://github.com/abhishek-maurya576/linkzy",
-liveDemo: "https://github.com/abhishek-maurya576/linkzy/releases",
+   {
+    "title": "AI Chat Bot Agent",
+    "description": "An advanced AI-powered assistant application for Android, integrating natural language processing, automated interactions, and accessibility features.",
+    "image": aichatbotImg,
+    "techStack": ["Kotlin", "Android Studio", "Google Gemini AI", "Room Database"],
+    "liveDemo": "https://github.com/abhishek-maurya576/AiChatBot/releases",
+    "sourceCode": "https://github.com/abhishek-maurya576/AiChatBot"
   },
   {
     title: "AI Text Summarizer",
