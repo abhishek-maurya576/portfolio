@@ -272,7 +272,9 @@ const Navbar = ({ toggleTheme, isDarkMode }) => {
         const projectsSection = document.getElementById('projects');
         if (projectsSection) {
           const rect = projectsSection.getBoundingClientRect();
-          const isInView = rect.top <= 200 && rect.bottom >= 200;
+          const windowHeight = window.innerHeight;
+          // Consider section in view if it's visible in the viewport
+          const isInView = rect.top < windowHeight * 0.5 && rect.bottom > windowHeight * 0.3;
           setIsProjectsInView(isInView);
         }
       } else {
@@ -287,33 +289,70 @@ const Navbar = ({ toggleTheme, isDarkMode }) => {
   }, [location.pathname]);
 
   const scrollToProjects = () => {
-    if (location.pathname !== '/') {
-      // If not on home page, navigate to home first
-      navigate('/');
-      // Wait for navigation to complete, then scroll
-      setTimeout(() => {
-        const projectsSection = document.getElementById('projects');
-        if (projectsSection) {
-          const navbarHeight = 100; // Account for fixed navbar
-          const elementPosition = projectsSection.offsetTop - navbarHeight;
+    console.log('Scroll to projects clicked, current path:', location.pathname);
+    
+    const performScroll = () => {
+      // Try multiple approaches to find the element
+      let projectsSection = document.getElementById('projects');
+      
+      if (!projectsSection) {
+        // Fallback: try to find by text content
+        const headings = document.querySelectorAll('h1, h2, h3');
+        for (let heading of headings) {
+          if (heading.textContent.toLowerCase().includes('project')) {
+            projectsSection = heading.closest('section') || heading.parentElement;
+            console.log('Found projects section by text content:', projectsSection);
+            break;
+          }
+        }
+      }
+      
+      console.log('Projects section element:', projectsSection);
+      
+      if (projectsSection) {
+        // Method 1: Try scrollIntoView with offset
+        projectsSection.scrollIntoView({ 
+          behavior: 'smooth',
+          block: 'start'
+        });
+        
+        // Method 2: Apply offset after scroll
+        setTimeout(() => {
+          const currentScroll = window.pageYOffset;
+          const offset = 100;
           window.scrollTo({
-            top: elementPosition,
+            top: currentScroll - offset,
             behavior: 'smooth'
           });
-        }
-      }, 100);
-    } else {
-      // If already on home page, just scroll
-      const projectsSection = document.getElementById('projects');
-      if (projectsSection) {
-        const navbarHeight = 100; // Account for fixed navbar
-        const elementPosition = projectsSection.offsetTop - navbarHeight;
+          console.log('Applied offset, scrolled to:', currentScroll - offset);
+        }, 500);
+        
+      } else {
+        console.log('Projects section not found - available elements with IDs:');
+        const elementsWithIds = document.querySelectorAll('[id]');
+        elementsWithIds.forEach(el => console.log('- ID:', el.id, 'Element:', el.tagName));
+        
+        // Try to scroll to a reasonable position if element not found
+        const estimatedPosition = window.innerHeight * 2; // Scroll down 2 viewport heights
         window.scrollTo({
-          top: elementPosition,
+          top: estimatedPosition,
           behavior: 'smooth'
         });
+        console.log('Fallback scroll to estimated position:', estimatedPosition);
       }
+    };
+
+    if (location.pathname !== '/') {
+      console.log('Not on home page, navigating first...');
+      navigate('/');
+      // Wait longer for navigation and DOM to be ready
+      setTimeout(performScroll, 1500);
+    } else {
+      console.log('Already on home page, scrolling...');
+      // Small delay to ensure DOM is ready
+      setTimeout(performScroll, 200);
     }
+    
     setIsMobileMenuOpen(false);
   };
 

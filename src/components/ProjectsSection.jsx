@@ -15,9 +15,9 @@ import love_3DImg from '../assets/images/projects/3D_love.png';
 
 const SectionContainer = styled.section`
   padding: 6rem 1rem;
-  background: ${({ theme }) => theme.background};
-  backdrop-filter: ${({ theme }) => theme.glass.backdrop};
-  -webkit-backdrop-filter: ${({ theme }) => theme.glass.backdrop};
+  background: ${({ theme }) => theme.background || 'transparent'};
+  backdrop-filter: ${({ theme }) => theme.glass?.backdrop || 'blur(10px)'};
+  -webkit-backdrop-filter: ${({ theme }) => theme.glass?.backdrop || 'blur(10px)'};
   position: relative;
   
   &::before {
@@ -27,7 +27,7 @@ const SectionContainer = styled.section`
     left: 0;
     right: 0;
     bottom: 0;
-    background: ${({ theme }) => theme.gradients.liquidGlass};
+    background: ${({ theme }) => theme.gradients?.liquidGlass || 'linear-gradient(135deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.05) 100%)'};
     pointer-events: none;
     z-index: -1;
   }

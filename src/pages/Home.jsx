@@ -307,6 +307,37 @@ const Home = () => {
     triggerOnce: true
   });
 
+  const scrollToProjects = (e) => {
+    e.preventDefault();
+    console.log('View My Work button clicked');
+    
+    const projectsSection = document.getElementById('projects');
+    console.log('Projects section element:', projectsSection);
+    
+    if (projectsSection) {
+      // Get the position relative to the document
+      const rect = projectsSection.getBoundingClientRect();
+      const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+      const elementTop = rect.top + scrollTop;
+      const navbarHeight = 120;
+      const targetPosition = elementTop - navbarHeight;
+      
+      console.log('Element rect:', rect);
+      console.log('Current scroll position:', scrollTop);
+      console.log('Element top position:', elementTop);
+      console.log('Target scroll position:', targetPosition);
+      
+      window.scrollTo({
+        top: targetPosition,
+        behavior: 'smooth'
+      });
+    } else {
+      console.log('Projects section not found - available elements with IDs:');
+      const elementsWithIds = document.querySelectorAll('[id]');
+      elementsWithIds.forEach(el => console.log('- ID:', el.id));
+    }
+  };
+
   return (
     <PageContainer>
       <StyledCanvas>
@@ -385,9 +416,9 @@ const Home = () => {
 
             <ButtonContainer>
               <Button
-                href="#projects"
+                onClick={scrollToProjects}
                 $primary
-                as={motion.a}
+                as={motion.button}
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: 0.6 }}
