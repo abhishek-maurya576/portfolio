@@ -180,37 +180,38 @@ const theme = {
     primary: '#6366f1',
     accent: '#3b82f6',
     text: '#1f2937',
-    background: '#ffffff',
+    background: 'linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.05) 100%)',
     backgroundRgba: '255, 255, 255',
     secondary: '#6b7280',
-    cardBg: 'rgba(255, 255, 255, 0.7)',
+    cardBg: 'rgba(255, 255, 255, 0.15)',
     error: '#ef4444',
     success: '#22c55e',
     warning: '#f59e0b',
     info: '#06b6d4',
-    shadow: '0 4px 16px rgba(0, 0, 0, 0.08)',
+    shadow: '0 8px 32px rgba(31, 38, 135, 0.37)',
     
-    // Glass morphism specific
+    // Glass morphism specific - Enhanced Liquid Glass
     glass: {
-      background: 'rgba(255, 255, 255, 0.25)',
-      backgroundStrong: 'rgba(255, 255, 255, 0.4)',
-      backgroundWeak: 'rgba(255, 255, 255, 0.1)',
-      border: 'rgba(255, 255, 255, 0.18)',
-      borderStrong: 'rgba(255, 255, 255, 0.3)',
-      shadow: '0 8px 32px rgba(31, 38, 135, 0.37)',
-      backdrop: 'blur(8px)',
-      backdropStrong: 'blur(16px)',
+      background: 'linear-gradient(135deg, rgba(255, 255, 255, 0.25) 0%, rgba(255, 255, 255, 0.1) 100%)',
+      backgroundStrong: 'linear-gradient(135deg, rgba(255, 255, 255, 0.4) 0%, rgba(255, 255, 255, 0.2) 100%)',
+      backgroundWeak: 'linear-gradient(135deg, rgba(255, 255, 255, 0.15) 0%, rgba(255, 255, 255, 0.05) 100%)',
+      border: 'rgba(255, 255, 255, 0.2)',
+      borderStrong: 'rgba(255, 255, 255, 0.35)',
+      shadow: '0 8px 32px rgba(31, 38, 135, 0.37), 0 16px 64px rgba(31, 38, 135, 0.2)',
+      backdrop: 'blur(12px)',
+      backdropStrong: 'blur(20px)',
     },
     
-    // Gradient definitions
+    // Gradient definitions - Enhanced Liquid Glass
     gradients: {
       primary: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
       accent: 'linear-gradient(135deg, #f093fb 0%, #f5576c 100%)',
       hero: 'linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%)',
-      card: 'linear-gradient(145deg, rgba(255,255,255,0.25) 0%, rgba(255,255,255,0.1) 100%)',
+      card: 'linear-gradient(145deg, rgba(255,255,255,0.2) 0%, rgba(255,255,255,0.05) 50%, rgba(255,255,255,0.15) 100%)',
       text: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
       button: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
-      mesh: 'radial-gradient(at 40% 20%, hsla(28,100%,74%,1) 0px, transparent 50%), radial-gradient(at 80% 0%, hsla(189,100%,56%,1) 0px, transparent 50%), radial-gradient(at 0% 50%, hsla(355,100%,93%,1) 0px, transparent 50%), radial-gradient(at 80% 50%, hsla(340,100%,76%,1) 0px, transparent 50%), radial-gradient(at 0% 100%, hsla(22,100%,77%,1) 0px, transparent 50%), radial-gradient(at 80% 100%, hsla(242,100%,70%,1) 0px, transparent 50%), radial-gradient(at 0% 0%, hsla(343,100%,76%,1) 0px, transparent 50%)',
+      liquidGlass: 'linear-gradient(135deg, rgba(255,255,255,0.25) 0%, rgba(255,255,255,0.1) 25%, rgba(255,255,255,0.2) 50%, rgba(255,255,255,0.05) 75%, rgba(255,255,255,0.15) 100%)',
+      mesh: 'radial-gradient(at 40% 20%, hsla(28,100%,74%,0.4) 0px, transparent 50%), radial-gradient(at 80% 0%, hsla(189,100%,56%,0.3) 0px, transparent 50%), radial-gradient(at 0% 50%, hsla(355,100%,93%,0.2) 0px, transparent 50%), radial-gradient(at 80% 50%, hsla(340,100%,76%,0.3) 0px, transparent 50%), radial-gradient(at 0% 100%, hsla(22,100%,77%,0.2) 0px, transparent 50%), radial-gradient(at 80% 100%, hsla(242,100%,70%,0.3) 0px, transparent 50%), radial-gradient(at 0% 0%, hsla(343,100%,76%,0.2) 0px, transparent 50%)',
     }
   },
   

@@ -16,6 +16,21 @@ import love_3DImg from '../assets/images/projects/3D_love.png';
 const SectionContainer = styled.section`
   padding: 6rem 1rem;
   background: ${({ theme }) => theme.background};
+  backdrop-filter: ${({ theme }) => theme.glass.backdrop};
+  -webkit-backdrop-filter: ${({ theme }) => theme.glass.backdrop};
+  position: relative;
+  
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: ${({ theme }) => theme.gradients.liquidGlass};
+    pointer-events: none;
+    z-index: -1;
+  }
   
   @media (max-width: 768px) {
     padding: 4rem 1rem;
@@ -60,19 +75,42 @@ const Grid = styled.div`
 `;
 
 const Card = styled(motion.div)`
-  background: ${({ theme }) => theme.cardBg};
-  border-radius: 12px;
+  background: ${({ theme }) => theme.glass.background};
+  backdrop-filter: ${({ theme }) => theme.glass.backdrop};
+  -webkit-backdrop-filter: ${({ theme }) => theme.glass.backdrop};
+  border: 1px solid ${({ theme }) => theme.glass.border};
+  border-radius: 16px;
   overflow: hidden;
-  box-shadow: ${({ theme }) => theme.shadow};
-  transition: transform 0.3s ease;
+  box-shadow: ${({ theme }) => theme.glass.shadow};
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: ${({ theme }) => theme.gradients.card};
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none;
+  }
 
   &:hover {
-    transform: translateY(-10px);
+    transform: translateY(-10px) scale(1.02);
+    box-shadow: ${({ theme }) => theme.glass.shadow}, 0 20px 40px rgba(31, 38, 135, 0.2);
+    border-color: ${({ theme }) => theme.glass.borderStrong};
+    
+    &::before {
+      opacity: 1;
+    }
   }
   
   @media (max-width: 768px) {
     &:hover {
-      transform: translateY(-5px);
+      transform: translateY(-5px) scale(1.01);
     }
   }
 `;
@@ -138,12 +176,38 @@ const TechStack = styled.div`
 `;
 
 const TechTag = styled.span`
-  background: ${({ theme }) => `rgba(${theme.backgroundRgba}, 0.5)`};
+  background: ${({ theme }) => theme.glass.backgroundWeak};
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
   color: ${({ theme }) => theme.accent};
   padding: 0.3rem 0.8rem;
-  border-radius: 15px;
+  border-radius: 20px;
   font-size: 0.9rem;
-  border: 1px solid ${({ theme }) => theme.accent};
+  border: 1px solid ${({ theme }) => theme.glass.border};
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+    transition: left 0.5s ease;
+  }
+
+  &:hover {
+    background: ${({ theme }) => theme.glass.background};
+    border-color: ${({ theme }) => theme.accent};
+    transform: translateY(-2px);
+    
+    &::before {
+      left: 100%;
+    }
+  }
   
   @media (max-width: 768px) {
     font-size: 0.8rem;
@@ -165,14 +229,39 @@ const ProjectLink = styled.a`
   color: ${({ theme }) => theme.text};
   text-decoration: none;
   padding: 0.5rem 1rem;
-  border: 1px solid ${({ theme }) => theme.primary};
-  border-radius: 5px;
-  transition: all 0.3s ease;
+  background: ${({ theme }) => theme.glass.backgroundWeak};
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid ${({ theme }) => theme.glass.border};
+  border-radius: 12px;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   text-align: center;
+  position: relative;
+  overflow: hidden;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: ${({ theme }) => theme.gradients.primary};
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    z-index: -1;
+  }
 
   &:hover {
-    background: ${({ theme }) => theme.primary};
+    background: ${({ theme }) => theme.glass.background};
+    border-color: ${({ theme }) => theme.primary};
     color: white;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(99, 102, 241, 0.3);
+    
+    &::before {
+      opacity: 1;
+    }
   }
   
   @media (max-width: 768px) {
