@@ -451,7 +451,7 @@ const ProjectsSection = () => {
   });
 
   return (
-    <SectionContainer>
+    <SectionContainer id="projects">
       <ContentWrapper>
         <SectionTitle
           ref={ref}

@@ -1,156 +1,374 @@
 import styled from 'styled-components';
-import { Link, useLocation } from 'react-router-dom';
-import { motion } from 'framer-motion';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { useState, useEffect } from 'react';
 import ThemeToggle from './ThemeToggle';
 
-const Nav = styled(motion.nav)`
+const NavContainer = styled.div`
   position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 72px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 0 ${({ theme }) => theme.spacing[8]};
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 1000;
   
-  /* Enhanced glass morphism */
-  background: ${({ theme }) => theme.glass.background};
-  backdrop-filter: ${({ theme }) => theme.glass.backdropStrong};
-  -webkit-backdrop-filter: ${({ theme }) => theme.glass.backdropStrong};
-  border-bottom: 1px solid ${({ theme }) => theme.glass.border};
-  box-shadow: ${({ theme }) => theme.shadows.glass.md};
-  
-  z-index: ${({ theme }) => theme.zIndex.sticky};
-  transition: all ${({ theme }) => theme.transitions.normal};
-  
-  /* Responsive padding */
   @media (max-width: 768px) {
-    padding: 0 ${({ theme }) => theme.spacing[4]};
-    height: 64px;
+    top: 15px;
+    left: 15px;
+    right: 15px;
+    transform: none;
+    width: calc(100% - 30px);
+  }
+`;
+
+const Nav = styled.nav`
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  padding: 12px 24px;
+  
+  /* Pill-like design with glass morphism */
+  background: ${({ theme }) => theme.glass?.backgroundStrong || 'rgba(255, 255, 255, 0.25)'};
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid ${({ theme }) => theme.glass?.borderStrong || 'rgba(255, 255, 255, 0.2)'};
+  border-radius: 50px;
+  box-shadow: 0 8px 32px rgba(31, 38, 135, 0.37);
+  
+  transition: all 0.3s ease;
+  
+  &:hover {
+    background: ${({ theme }) => theme.glass?.background || 'rgba(255, 255, 255, 0.3)'};
+    box-shadow: 0 16px 64px rgba(31, 38, 135, 0.2);
+    transform: translateY(-2px);
   }
   
-  /* Hover effect */
-  &:hover {
-    background: ${({ theme }) => theme.glass.backgroundStrong};
-    border-bottom-color: ${({ theme }) => theme.glass.borderStrong};
+  @media (max-width: 768px) {
+    padding: 10px 20px;
+    gap: 15px;
+    flex-wrap: wrap;
+  }
+  
+  @media (max-width: 640px) {
+    justify-content: space-between;
+  }
+  
+  @media (max-width: 480px) {
+    padding: 8px 16px;
+    gap: 10px;
   }
 `;
 
 const Logo = styled(Link)`
-  font-size: ${({ theme }) => theme.fontSize['2xl']};
+  font-size: ${({ theme }) => theme.fontSize?.lg || '18px'};
   font-weight: 800;
-  letter-spacing: -0.02em;
   text-decoration: none;
+  white-space: nowrap;
   
-  /* Enhanced gradient text */
-  background: ${({ theme }) => theme.gradients.text};
+  background: ${({ theme }) => theme.gradients?.text || 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)'};
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
   
-  /* Smooth transitions */
-  transition: all ${({ theme }) => theme.transitions.normal};
+  transition: all 0.3s ease;
   
-  /* Hover effect */
   &:hover {
     transform: scale(1.05);
-    filter: brightness(1.1);
   }
   
-  /* Responsive sizing */
   @media (max-width: 768px) {
-    font-size: ${({ theme }) => theme.fontSize.xl};
+    font-size: ${({ theme }) => theme.fontSize?.base || '16px'};
+  }
+  
+  @media (max-width: 480px) {
+    font-size: ${({ theme }) => theme.fontSize?.sm || '14px'};
   }
 `;
 
-const NavLinks = styled.div`
+const NavLinksContainer = styled.div`
   display: flex;
-  gap: ${({ theme }) => theme.spacing[8]};
   align-items: center;
+  gap: 6px;
   
-  @media (max-width: 768px) {
-    gap: ${({ theme }) => theme.spacing[6]};
-  }
+  background: ${({ theme }) => theme.glass?.backgroundWeak || 'rgba(255, 255, 255, 0.15)'};
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid ${({ theme }) => theme.glass?.border || 'rgba(255, 255, 255, 0.2)'};
+  border-radius: 30px;
+  padding: 6px;
   
   @media (max-width: 640px) {
-    gap: ${({ theme }) => theme.spacing[4]};
+    display: none;
   }
 `;
 
 const NavLink = styled(Link)`
-  position: relative;
-  color: ${({ theme, $isActive }) => $isActive ? theme.primary : theme.text};
+  color: ${({ theme, $isActive }) => $isActive ? 'white' : (theme.text || 'rgba(255, 255, 255, 0.8)')};
   text-decoration: none;
   font-weight: ${({ $isActive }) => $isActive ? '600' : '500'};
-  font-size: ${({ theme }) => theme.fontSize.sm};
-  letter-spacing: -0.01em;
-  padding: ${({ theme }) => `${theme.spacing[2]} ${theme.spacing[3]}`};
-  border-radius: ${({ theme }) => theme.borderRadius.lg};
+  font-size: ${({ theme }) => theme.fontSize?.sm || '14px'};
+  padding: 8px 16px;
+  border-radius: 25px;
+  white-space: nowrap;
   
-  /* Glass morphism background for active state */
   background: ${({ theme, $isActive }) => 
-    $isActive ? theme.glass.backgroundWeak : 'transparent'};
-  border: 1px solid ${({ theme, $isActive }) => 
-    $isActive ? theme.glass.border : 'transparent'};
+    $isActive ? (theme.gradients?.primary || 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)') : 'transparent'};
   
-  transition: all ${({ theme }) => theme.transitions.normal};
-
-  /* Enhanced underline effect */
-  &::after {
-    content: '';
-    position: absolute;
-    bottom: -2px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: ${({ $isActive }) => $isActive ? '80%' : '0'};
-    height: 2px;
-    background: ${({ theme }) => theme.gradients.primary};
-    border-radius: ${({ theme }) => theme.borderRadius.full};
-    transition: all ${({ theme }) => theme.transitions.normal};
-  }
+  transition: all 0.3s ease;
+  
+  box-shadow: ${({ theme, $isActive }) => 
+    $isActive ? '0 8px 32px rgba(99, 102, 241, 0.24)' : 'none'};
 
   &:hover {
-    color: ${({ theme }) => theme.primary};
-    background: ${({ theme }) => theme.glass.backgroundWeak};
-    border-color: ${({ theme }) => theme.glass.border};
+    color: ${({ theme, $isActive }) => $isActive ? 'white' : (theme.primary || '#667eea')};
+    background: ${({ theme, $isActive }) => 
+      $isActive ? (theme.gradients?.primary || 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)') : 'rgba(255, 255, 255, 0.15)'};
     transform: translateY(-1px);
-    
-    &::after {
-      width: 80%;
-    }
   }
   
-  /* Active state enhancements */
-  ${({ $isActive, theme }) => $isActive && `
-    color: ${theme.primary};
-    box-shadow: ${theme.shadows.glass.sm};
-  `}
+  @media (max-width: 768px) {
+    font-size: ${({ theme }) => theme.fontSize?.xs || '12px'};
+    padding: 6px 12px;
+  }
+`;
+
+const MobileMenuButton = styled.button`
+  display: none;
+  background: ${({ theme }) => theme.glass?.backgroundWeak || 'rgba(255, 255, 255, 0.15)'};
+  border: 1px solid ${({ theme }) => theme.glass?.border || 'rgba(255, 255, 255, 0.2)'};
+  color: ${({ theme }) => theme.text || 'white'};
+  font-size: 18px;
+  cursor: pointer;
+  padding: 8px;
+  border-radius: 20px;
+  transition: all 0.3s ease;
+  
+  &:hover {
+    background: ${({ theme }) => theme.glass?.background || 'rgba(255, 255, 255, 0.25)'};
+    color: ${({ theme }) => theme.primary || '#667eea'};
+  }
   
   @media (max-width: 640px) {
-    font-size: ${({ theme }) => theme.fontSize.xs};
-    padding: ${({ theme }) => `${theme.spacing[1.5]} ${theme.spacing[2]}`};
+    display: block;
+  }
+`;
+
+const MobileNavLinks = styled.div`
+  display: none;
+  
+  @media (max-width: 640px) {
+    display: ${({ $isOpen }) => $isOpen ? 'flex' : 'none'};
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    flex-direction: column;
+    gap: 4px;
+    margin-top: 8px;
+    padding: 12px;
+    background: ${({ theme }) => theme.glass?.backgroundStrong || 'rgba(255, 255, 255, 0.25)'};
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid ${({ theme }) => theme.glass?.border || 'rgba(255, 255, 255, 0.2)'};
+    border-radius: 20px;
+    box-shadow: 0 8px 32px rgba(31, 38, 135, 0.37);
+  }
+`;
+
+const MobileNavLink = styled(Link)`
+  color: ${({ theme, $isActive }) => $isActive ? 'white' : (theme.text || 'rgba(255, 255, 255, 0.8)')};
+  text-decoration: none;
+  font-weight: ${({ $isActive }) => $isActive ? '600' : '500'};
+  font-size: ${({ theme }) => theme.fontSize?.sm || '14px'};
+  padding: 10px 16px;
+  border-radius: 15px;
+  text-align: center;
+  
+  background: ${({ theme, $isActive }) => 
+    $isActive ? (theme.gradients?.primary || 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)') : 'transparent'};
+  
+  transition: all 0.3s ease;
+  
+  &:hover {
+    color: ${({ theme, $isActive }) => $isActive ? 'white' : (theme.primary || '#667eea')};
+    background: ${({ theme, $isActive }) => 
+      $isActive ? (theme.gradients?.primary || 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)') : 'rgba(255, 255, 255, 0.15)'};
+  }
+`;
+
+const ProjectsButton = styled.button`
+  color: ${({ theme, $isActive }) => $isActive ? 'white' : (theme.text || 'rgba(255, 255, 255, 0.8)')};
+  background: ${({ theme, $isActive }) => 
+    $isActive ? (theme.gradients?.primary || 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)') : 'transparent'};
+  border: none;
+  font-weight: ${({ $isActive }) => $isActive ? '600' : '500'};
+  font-size: ${({ theme }) => theme.fontSize?.sm || '14px'};
+  padding: 8px 16px;
+  border-radius: 25px;
+  white-space: nowrap;
+  cursor: pointer;
+  
+  transition: all 0.3s ease;
+  
+  box-shadow: ${({ theme, $isActive }) => 
+    $isActive ? '0 8px 32px rgba(99, 102, 241, 0.24)' : 'none'};
+
+  &:hover {
+    color: ${({ theme, $isActive }) => $isActive ? 'white' : (theme.primary || '#667eea')};
+    background: ${({ theme, $isActive }) => 
+      $isActive ? (theme.gradients?.primary || 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)') : 'rgba(255, 255, 255, 0.15)'};
+    transform: translateY(-1px);
+  }
+  
+  @media (max-width: 768px) {
+    font-size: ${({ theme }) => theme.fontSize?.xs || '12px'};
+    padding: 6px 12px;
+  }
+`;
+
+const MobileProjectsButton = styled.button`
+  color: ${({ theme, $isActive }) => $isActive ? 'white' : (theme.text || 'rgba(255, 255, 255, 0.8)')};
+  background: ${({ theme, $isActive }) => 
+    $isActive ? (theme.gradients?.primary || 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)') : 'transparent'};
+  border: none;
+  font-weight: ${({ $isActive }) => $isActive ? '600' : '500'};
+  font-size: ${({ theme }) => theme.fontSize?.sm || '14px'};
+  padding: 10px 16px;
+  border-radius: 15px;
+  text-align: center;
+  width: 100%;
+  cursor: pointer;
+  
+  transition: all 0.3s ease;
+  
+  &:hover {
+    color: ${({ theme, $isActive }) => $isActive ? 'white' : (theme.primary || '#667eea')};
+    background: ${({ theme, $isActive }) => 
+      $isActive ? (theme.gradients?.primary || 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)') : 'rgba(255, 255, 255, 0.15)'};
   }
 `;
 
 const Navbar = ({ toggleTheme, isDarkMode }) => {
   const location = useLocation();
+  const navigate = useNavigate();
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isProjectsInView, setIsProjectsInView] = useState(false);
+
+  const navItems = [
+    { path: '/', label: 'Home' },
+    { path: '/about', label: 'About' },
+    { path: '/contact', label: 'Contact' },
+    { path: '/blog', label: 'Blog' }
+  ];
+
+  const toggleMobileMenu = () => {
+    setIsMobileMenuOpen(!isMobileMenuOpen);
+  };
+
+  // Check if projects section is in view
+  useEffect(() => {
+    const handleScroll = () => {
+      if (location.pathname === '/') {
+        const projectsSection = document.getElementById('projects');
+        if (projectsSection) {
+          const rect = projectsSection.getBoundingClientRect();
+          const isInView = rect.top <= 200 && rect.bottom >= 200;
+          setIsProjectsInView(isInView);
+        }
+      } else {
+        setIsProjectsInView(false);
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    handleScroll(); // Check initial state
+
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, [location.pathname]);
+
+  const scrollToProjects = () => {
+    if (location.pathname !== '/') {
+      // If not on home page, navigate to home first
+      navigate('/');
+      // Wait for navigation to complete, then scroll
+      setTimeout(() => {
+        const projectsSection = document.getElementById('projects');
+        if (projectsSection) {
+          const navbarHeight = 100; // Account for fixed navbar
+          const elementPosition = projectsSection.offsetTop - navbarHeight;
+          window.scrollTo({
+            top: elementPosition,
+            behavior: 'smooth'
+          });
+        }
+      }, 100);
+    } else {
+      // If already on home page, just scroll
+      const projectsSection = document.getElementById('projects');
+      if (projectsSection) {
+        const navbarHeight = 100; // Account for fixed navbar
+        const elementPosition = projectsSection.offsetTop - navbarHeight;
+        window.scrollTo({
+          top: elementPosition,
+          behavior: 'smooth'
+        });
+      }
+    }
+    setIsMobileMenuOpen(false);
+  };
 
   return (
-    <Nav
-      initial={{ y: -100 }}
-      animate={{ y: 0 }}
-      transition={{ duration: 0.5 }}
-    >
-      <Logo to="/">My Portfolio</Logo>
-      <NavLinks>
-        <NavLink to="/about" $isActive={location.pathname === '/about'}>About</NavLink>
-        <NavLink to="/projects" $isActive={location.pathname === '/projects'}>Projects</NavLink>
-        <NavLink to="/contact" $isActive={location.pathname === '/contact'}>Contact</NavLink>
-        <NavLink to="/blog" $isActive={location.pathname === '/blog'}>Blog</NavLink>
-      </NavLinks>
-      <ThemeToggle isDarkMode={isDarkMode} toggleTheme={toggleTheme} />
-    </Nav>
+    <NavContainer>
+      <Nav>
+        <Logo to="/">My Portfolio</Logo>
+        
+        {/* Desktop Navigation */}
+        <NavLinksContainer>
+          {navItems.map((item) => (
+            <NavLink 
+              key={item.path}
+              to={item.path} 
+              $isActive={location.pathname === item.path}
+            >
+              {item.label}
+            </NavLink>
+          ))}
+          <ProjectsButton 
+            onClick={scrollToProjects}
+            $isActive={location.pathname === '/' && isProjectsInView}
+          >
+            Projects
+          </ProjectsButton>
+        </NavLinksContainer>
+
+        <ThemeToggle isDarkMode={isDarkMode} toggleTheme={toggleTheme} />
+
+        {/* Mobile Menu Button */}
+        <MobileMenuButton onClick={toggleMobileMenu}>
+          {isMobileMenuOpen ? '✕' : '☰'}
+        </MobileMenuButton>
+
+        {/* Mobile Navigation */}
+        <MobileNavLinks $isOpen={isMobileMenuOpen}>
+          {navItems.map((item) => (
+            <MobileNavLink 
+              key={item.path}
+              to={item.path} 
+              $isActive={location.pathname === item.path}
+              onClick={() => setIsMobileMenuOpen(false)}
+            >
+              {item.label}
+            </MobileNavLink>
+          ))}
+          <MobileProjectsButton 
+            onClick={scrollToProjects}
+            $isActive={location.pathname === '/' && isProjectsInView}
+          >
+            Projects
+          </MobileProjectsButton>
+        </MobileNavLinks>
+      </Nav>
+    </NavContainer>
   );
 };
 
